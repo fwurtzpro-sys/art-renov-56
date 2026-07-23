@@ -5,18 +5,18 @@ import { writeFileSync } from "node:fs";
 // until Art Renov 56 supplies actual site photos.
 
 const palette = {
-  ardoise900: "#2b3843",
-  ardoise700: "#394d5d",
-  ardoise500: "#57748a",
-  pierre300: "#d8c6a3",
-  pierre500: "#b89661",
-  creme: "#f8f6f1",
+  ardoise900: "#293643",
+  ardoise700: "#374b5d",
+  ardoise500: "#54748c",
+  pierre300: "#d3c9b4",
+  breton500: "#2f6fa3",
+  creme: "#f8f7f4",
 };
 
 function placeholder({ width, height, seed, tone = "dark" }) {
   const bg = tone === "dark" ? palette.ardoise900 : palette.pierre300;
-  const bandColor = tone === "dark" ? palette.ardoise700 : palette.pierre500;
-  const accent = tone === "dark" ? palette.pierre500 : palette.ardoise700;
+  const bandColor = tone === "dark" ? palette.ardoise700 : palette.breton500;
+  const accent = tone === "dark" ? palette.breton500 : palette.ardoise700;
 
   const bands = Array.from({ length: 6 })
     .map((_, i) => {
@@ -49,6 +49,7 @@ const targets = [
   { file: "public/images/services/revetements-sols.svg", w: 1200, h: 900, seed: 24, tone: "light" },
   { file: "public/images/services/revetements-muraux.svg", w: 1200, h: 900, seed: 25, tone: "dark" },
   { file: "public/images/services/amenagement-interieur.svg", w: 1200, h: 900, seed: 26, tone: "light" },
+  { file: "public/images/services/pose-de-vmi.svg", w: 1200, h: 900, seed: 27, tone: "dark" },
   { file: "public/images/realisations/maison-vannes.svg", w: 1400, h: 1000, seed: 31, tone: "dark" },
   { file: "public/images/realisations/maison-vannes-2.svg", w: 1400, h: 1000, seed: 32, tone: "light" },
   { file: "public/images/realisations/facade-lorient.svg", w: 1400, h: 1000, seed: 33, tone: "dark" },

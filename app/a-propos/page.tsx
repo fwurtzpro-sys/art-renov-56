@@ -64,12 +64,12 @@ export default function AboutPage() {
         <Container>
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
             <Reveal>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
+              <div className="group relative aspect-[4/5] overflow-hidden rounded-lg shadow-sm">
                 <Image
                   src="/images/about/atelier.svg"
                   alt="Équipe Art Renov 56 sur un chantier"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
                   sizes="(min-width: 1024px) 40vw, 90vw"
                 />
               </div>
@@ -112,16 +112,20 @@ export default function AboutPage() {
           <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-3">
             {values.map((value, index) => (
               <Reveal key={value.title} delay={index * 0.08}>
-                <value.icon
-                  className="size-8 text-ardoise-800"
-                  aria-hidden="true"
-                />
-                <h3 className="mt-5 font-display text-lg text-anthracite">
-                  {value.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ardoise-600">
-                  {value.description}
-                </p>
+                <div className="group">
+                  <div className="flex size-14 items-center justify-center rounded-full bg-white shadow-sm transition-all duration-500 ease-premium group-hover:-translate-y-1 group-hover:shadow-md">
+                    <value.icon
+                      className="size-6 text-ardoise-800"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg text-anthracite">
+                    {value.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ardoise-600">
+                    {value.description}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </div>

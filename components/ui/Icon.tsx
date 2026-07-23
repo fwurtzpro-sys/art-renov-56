@@ -5,6 +5,7 @@ import {
   LayoutGrid,
   PanelsTopLeft,
   Ruler,
+  Wind,
   type LucideProps,
 } from "lucide-react";
 
@@ -15,6 +16,7 @@ const icons = {
   LayoutGrid,
   PanelsTopLeft,
   Ruler,
+  Wind,
 } as const;
 
 export type IconName = keyof typeof icons;

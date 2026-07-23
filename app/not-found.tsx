@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <section className="flex min-h-[80vh] items-center bg-creme pt-24">
       <Container className="text-center">
-        <Compass className="mx-auto size-12 text-pierre-500" aria-hidden="true" />
+        <Compass className="mx-auto size-12 text-breton-500" aria-hidden="true" />
         <p className="mt-6 font-display text-6xl text-anthracite md:text-7xl">404</p>
         <h1 className="mt-4 font-display text-2xl text-anthracite md:text-3xl">
           Cette page n&apos;existe pas

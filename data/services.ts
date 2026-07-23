@@ -121,6 +121,26 @@ export const services: Service[] = [
     metaDescription:
       "Aménagement intérieur sur mesure en Morbihan : cuisines, dressings, rangements. Conception par Art Renov 56.",
   },
+  {
+    slug: "pose-de-vmi",
+    title: "Pose de VMI",
+    shortDescription:
+      "Améliorez la qualité de l'air de votre logement grâce à une ventilation mécanique par insufflation adaptée à votre habitat.",
+    description: [
+      "La VMI (Ventilation Mécanique par Insufflation) renouvelle l'air de votre logement en insufflant de l'air filtré et tempéré, pour limiter l'humidité, les moisissures et les polluants intérieurs.",
+      "Nous étudions votre logement pour dimensionner et installer un système adapté à sa configuration, avec un réglage soigné garantissant confort et performance énergétique.",
+    ],
+    icon: "Wind",
+    image: "/images/services/pose-de-vmi.svg",
+    features: [
+      "Étude et dimensionnement du système",
+      "Installation soignée et discrète",
+      "Réglage des débits d'air",
+      "Amélioration durable de la qualité de l'air intérieur",
+    ],
+    metaDescription:
+      "Pose de VMI (ventilation mécanique par insufflation) dans le Morbihan : étude, installation et réglage par Art Renov 56.",
+  },
 ];
 
 export function getServiceBySlug(slug: string): Service | undefined {

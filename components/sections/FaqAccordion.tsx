@@ -24,14 +24,14 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
                   aria-expanded={isOpen}
                   aria-controls={`faq-panel-${index}`}
                   id={`faq-trigger-${index}`}
-                  className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                  className="group flex w-full items-center justify-between gap-6 py-6 text-left"
                 >
-                  <span className="font-display text-lg text-anthracite md:text-xl">
+                  <span className="font-display text-lg text-anthracite transition-colors duration-300 group-hover:text-breton-700 md:text-xl">
                     {item.question}
                   </span>
                   <Plus
                     className={cn(
-                      "size-5 shrink-0 text-pierre-600 transition-transform duration-300 ease-premium",
+                      "size-5 shrink-0 text-breton-600 transition-transform duration-300 ease-premium group-hover:scale-110",
                       isOpen && "rotate-45"
                     )}
                     aria-hidden="true"

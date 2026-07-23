@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
   <defs>
     <linearGradient id="g23" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#2b3843" />
-      <stop offset="100%" stop-color="#57748a" />
+      <stop offset="0%" stop-color="#293643" />
+      <stop offset="100%" stop-color="#54748c" />
     </linearGradient>
   </defs>
   <rect width="1200" height="900" fill="url(#g23)" />
-  <rect x="851" y="0" width="63" height="900" fill="#394d5d" opacity="0.08" /><rect x="942" y="0" width="116" height="900" fill="#394d5d" opacity="0.08" /><rect x="1033" y="0" width="49" height="900" fill="#394d5d" opacity="0.08" /><rect x="1124" y="0" width="102" height="900" fill="#394d5d" opacity="0.08" /><rect x="15" y="0" width="155" height="900" fill="#394d5d" opacity="0.08" /><rect x="106" y="0" width="88" height="900" fill="#394d5d" opacity="0.08" />
-  <circle cx="983.9999999999999" cy="198" r="162" fill="#b89661" opacity="0.15" />
-  <rect x="0" y="702" width="1200" height="2" fill="#f8f6f1" opacity="0.25" />
+  <rect x="851" y="0" width="63" height="900" fill="#374b5d" opacity="0.08" /><rect x="942" y="0" width="116" height="900" fill="#374b5d" opacity="0.08" /><rect x="1033" y="0" width="49" height="900" fill="#374b5d" opacity="0.08" /><rect x="1124" y="0" width="102" height="900" fill="#374b5d" opacity="0.08" /><rect x="15" y="0" width="155" height="900" fill="#374b5d" opacity="0.08" /><rect x="106" y="0" width="88" height="900" fill="#374b5d" opacity="0.08" />
+  <circle cx="983.9999999999999" cy="198" r="162" fill="#2f6fa3" opacity="0.15" />
+  <rect x="0" y="702" width="1200" height="2" fill="#f8f7f4" opacity="0.25" />
 </svg>

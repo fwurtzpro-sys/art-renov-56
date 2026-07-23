@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -12,12 +15,14 @@ interface ButtonProps {
 
 const variantStyles = {
   primary:
-    "bg-ardoise-900 text-creme hover:bg-ardoise-800 focus-visible:ring-ardoise-900",
+    "bg-ardoise-900 text-creme shadow-sm shadow-ardoise-900/20 hover:bg-ardoise-800 hover:shadow-md hover:shadow-ardoise-900/25 focus-visible:ring-breton-500",
   secondary:
-    "bg-transparent text-ardoise-900 border border-ardoise-900/30 hover:border-ardoise-900 focus-visible:ring-ardoise-900",
+    "bg-transparent text-ardoise-900 border border-ardoise-900/25 hover:border-ardoise-900 hover:bg-ardoise-900/5 focus-visible:ring-breton-500",
   ghost:
-    "bg-transparent text-creme border border-creme/40 hover:border-creme focus-visible:ring-creme",
+    "bg-transparent text-creme border border-creme/40 hover:border-creme hover:bg-creme/10 focus-visible:ring-creme",
 };
+
+const MotionLink = motion.create(Link);
 
 export function Button({
   href,
@@ -26,11 +31,16 @@ export function Button({
   className,
   showArrow = true,
 }: ButtonProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <Link
+    <MotionLink
       href={href}
+      whileHover={prefersReducedMotion ? undefined : { scale: 1.02, y: -1 }}
+      whileTap={prefersReducedMotion ? undefined : { scale: 0.98, y: 0 }}
+      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-        "group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-colors duration-300 ease-premium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+        "group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-[background-color,border-color,box-shadow] duration-300 ease-premium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
         variantStyles[variant],
         className
       )}
@@ -42,6 +52,6 @@ export function Button({
           aria-hidden="true"
         />
       )}
-    </Link>
+    </MotionLink>
   );
 }

@@ -45,7 +45,7 @@ export function PageHero({
 
         {eyebrow && (
           <Reveal>
-            <p className="mb-4 mt-8 text-xs font-medium uppercase tracking-[0.2em] text-pierre-400">
+            <p className="mb-4 mt-8 text-xs font-medium uppercase tracking-[0.2em] text-breton-400">
               {eyebrow}
             </p>
           </Reveal>

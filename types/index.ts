@@ -32,6 +32,8 @@ export interface FaqItem {
 export interface ZoneVille {
   name: string;
   slug: string;
+  lat: number;
+  lng: number;
 }
 
 export interface NavLink {
@@ -49,6 +51,8 @@ export interface CompanyInfo {
   city: string;
   postalCode: string;
   region: string;
+  lat: number;
+  lng: number;
   siret: string;
   rcs: string;
   insurance: string;

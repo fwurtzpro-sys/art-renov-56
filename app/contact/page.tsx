@@ -51,7 +51,7 @@ export default function ContactPage() {
               <Reveal delay={0.06}>
                 <ul className="mt-8 space-y-6">
                   <li className="flex items-start gap-3">
-                    <Phone className="mt-0.5 size-5 shrink-0 text-pierre-600" aria-hidden="true" />
+                    <Phone className="mt-0.5 size-5 shrink-0 text-breton-600" aria-hidden="true" />
                     <div>
                       <p className="text-sm font-medium text-anthracite">Téléphone</p>
                       <a href={`tel:${company.phone}`} className="text-sm text-ardoise-600">
@@ -60,7 +60,7 @@ export default function ContactPage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Mail className="mt-0.5 size-5 shrink-0 text-pierre-600" aria-hidden="true" />
+                    <Mail className="mt-0.5 size-5 shrink-0 text-breton-600" aria-hidden="true" />
                     <div>
                       <p className="text-sm font-medium text-anthracite">Email</p>
                       <a href={`mailto:${company.email}`} className="text-sm text-ardoise-600">
@@ -69,7 +69,7 @@ export default function ContactPage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <MapPin className="mt-0.5 size-5 shrink-0 text-pierre-600" aria-hidden="true" />
+                    <MapPin className="mt-0.5 size-5 shrink-0 text-breton-600" aria-hidden="true" />
                     <div>
                       <p className="text-sm font-medium text-anthracite">Adresse</p>
                       <p className="text-sm text-ardoise-600">
@@ -78,7 +78,7 @@ export default function ContactPage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Clock className="mt-0.5 size-5 shrink-0 text-pierre-600" aria-hidden="true" />
+                    <Clock className="mt-0.5 size-5 shrink-0 text-breton-600" aria-hidden="true" />
                     <div>
                       <p className="text-sm font-medium text-anthracite">Horaires</p>
                       <ul className="mt-1 space-y-1 text-sm text-ardoise-600">
