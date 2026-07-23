@@ -20,6 +20,24 @@
   }
 }
 
+/* Alignement de la carte Leaflet (zone d'intervention) sur l'identité du site */
+.leaflet-control-zoom {
+  border: none !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 30, 48, 0.15) !important;
+}
+
+.leaflet-control-zoom a {
+  color: #0f1e30 !important;
+  border-color: rgba(15, 30, 48, 0.1) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 0.5rem !important;
+  font-family: var(--font-sans), sans-serif;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

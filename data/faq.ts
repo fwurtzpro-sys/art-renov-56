@@ -4,7 +4,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Quelles zones géographiques couvrez-vous ?",
     answer:
-      "Nous intervenons dans tout le Morbihan, notamment à Vannes, Lorient, Auray, Pontivy et leurs environs. Contactez-nous pour vérifier notre disponibilité sur votre secteur.",
+      "Nous intervenons dans tout le département du Morbihan : Vannes, Lorient, Auray, Pontivy, Elven et l'ensemble des communes environnantes. Contactez-nous pour vérifier notre disponibilité sur votre secteur.",
     category: "general",
   },
   {
@@ -22,7 +22,13 @@ export const faqItems: FaqItem[] = [
   {
     question: "Quels types de chantiers réalisez-vous ?",
     answer:
-      "Nous intervenons aussi bien sur des rénovations complètes que sur des travaux ponctuels : peinture, revêtements de sols ou muraux, aménagements sur mesure, rénovation de façade.",
+      "Nous intervenons aussi bien sur des rénovations complètes que sur des travaux ponctuels : peinture, revêtements de sols ou muraux, aménagements sur mesure, rénovation de façade et pose de VMI.",
+    category: "prestations",
+  },
+  {
+    question: "Réalisez-vous la pose de VMI ?",
+    answer:
+      "Oui, nous étudions, installons et réglons des systèmes de VMI (ventilation mécanique par insufflation) afin d'améliorer durablement la qualité de l'air et le confort de votre logement.",
     category: "prestations",
   },
   {
@@ -41,6 +47,12 @@ export const faqItems: FaqItem[] = [
     question: "Êtes-vous assurés pour vos travaux ?",
     answer:
       "Oui, Art Renov 56 dispose d'une assurance décennale et d'une responsabilité civile professionnelle couvrant l'ensemble de ses interventions.",
+    category: "general",
+  },
+  {
+    question: "Quels sont vos horaires et comment vous contacter ?",
+    answer:
+      "Nous sommes disponibles du lundi au vendredi de 09h00 à 18h00, et le samedi de 09h00 à 17h00, au 06 03 87 78 67 ou par email à art-renov56@gmail.com.",
     category: "general",
   },
 ];

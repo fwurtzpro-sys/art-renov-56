@@ -48,7 +48,7 @@ export function FormField(props: FormFieldProps) {
         className="mb-2 block text-sm font-medium text-anthracite"
       >
         {label}
-        {required && <span className="text-pierre-600"> *</span>}
+        {required && <span className="text-breton-600"> *</span>}
       </label>
 
       {as === "textarea" ? (

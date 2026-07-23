@@ -5,6 +5,7 @@ import { company } from "@/data/company";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/sections/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
+import { MapSection } from "@/components/sections/MapSection";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
@@ -43,20 +44,7 @@ export default function ZoneInterventionPage() {
       <section className="py-20 md:py-28">
         <Container>
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1.1fr_1fr] lg:items-start">
-            <Reveal>
-              <div className="relative aspect-square overflow-hidden rounded-sm bg-ardoise-100">
-                <div className="flex h-full flex-col items-center justify-center gap-3 p-10 text-center">
-                  <MapPin className="size-10 text-ardoise-700" aria-hidden="true" />
-                  <p className="font-display text-xl text-ardoise-900">
-                    Morbihan (56)
-                  </p>
-                  <p className="max-w-xs text-sm text-ardoise-600">
-                    Carte interactive à intégrer — zone d&apos;intervention
-                    couvrant l&apos;ensemble du département.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
+            <MapSection />
 
             <div>
               <Reveal>
@@ -72,7 +60,7 @@ export default function ZoneInterventionPage() {
                       className="flex items-center gap-2 text-sm text-ardoise-700"
                     >
                       <MapPin
-                        className="size-4 shrink-0 text-pierre-600"
+                        className="size-4 shrink-0 text-breton-600"
                         aria-hidden="true"
                       />
                       {zone.name}

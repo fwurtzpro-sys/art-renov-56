@@ -16,12 +16,12 @@ export function Presentation() {
       <Container>
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <Reveal>
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm">
+            <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-lg shadow-sm transition-shadow duration-500 ease-premium hover:shadow-lg">
               <Image
                 src="/images/about/atelier.svg"
                 alt="Atelier Art Renov 56"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
                 sizes="(min-width: 1024px) 40vw, 90vw"
               />
             </div>

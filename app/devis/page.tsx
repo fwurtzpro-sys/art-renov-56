@@ -59,7 +59,7 @@ export default function DevisPage() {
                   {benefits.map((benefit) => (
                     <li key={benefit} className="flex items-start gap-3">
                       <CheckCircle2
-                        className="mt-0.5 size-5 shrink-0 text-pierre-600"
+                        className="mt-0.5 size-5 shrink-0 text-breton-600"
                         aria-hidden="true"
                       />
                       <span className="text-sm text-ardoise-700 md:text-base">

@@ -105,7 +105,7 @@ export default async function ServicePage({
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
                       <Check
-                        className="mt-0.5 size-5 shrink-0 text-pierre-600"
+                        className="mt-0.5 size-5 shrink-0 text-breton-600"
                         aria-hidden="true"
                       />
                       <span className="text-sm text-ardoise-800 md:text-base">
@@ -136,16 +136,17 @@ export default async function ServicePage({
                   <Reveal key={realisation.slug} delay={index * 0.08}>
                     <Link
                       href={`/realisations/${realisation.slug}`}
-                      className="group block"
+                      className="group block transition-transform duration-500 ease-premium hover:-translate-y-1.5"
                     >
-                      <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
+                      <div className="relative aspect-[4/5] overflow-hidden rounded-lg shadow-sm transition-shadow duration-500 ease-premium group-hover:shadow-xl">
                         <Image
                           src={realisation.cover}
                           alt={realisation.title}
                           fill
-                          className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
+                          className="object-cover transition-transform duration-700 ease-premium group-hover:scale-110"
                           sizes="(min-width: 1024px) 30vw, 90vw"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-marine/60 via-marine/0 to-marine/0 opacity-0 transition-opacity duration-500 ease-premium group-hover:opacity-100" />
                       </div>
                       <h3 className="mt-4 font-display text-lg text-anthracite">
                         {realisation.title}

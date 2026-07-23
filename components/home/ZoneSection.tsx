@@ -26,7 +26,7 @@ export function ZoneSection() {
                   className="flex items-center gap-2 text-sm text-ardoise-200"
                 >
                   <MapPin
-                    className="size-4 shrink-0 text-pierre-400"
+                    className="size-4 shrink-0 text-breton-400"
                     aria-hidden="true"
                   />
                   {zone.name}

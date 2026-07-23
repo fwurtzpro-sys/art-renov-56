@@ -34,33 +34,40 @@ export function Header() {
             )}
             onClick={() => setOpen(false)}
           >
-            Art Renov <span className="text-pierre-500">56</span>
+            Art Renov <span className="text-breton-500">56</span>
           </Link>
 
           <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigation principale">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "relative text-sm font-medium tracking-wide transition-colors duration-500",
-                  solid
-                    ? cn(
-                        "text-anthracite/80 hover:text-anthracite",
-                        pathname === link.href && "text-anthracite"
-                      )
-                    : cn(
-                        "text-creme/80 hover:text-creme",
-                        pathname === link.href && "text-creme"
-                      )
-                )}
-              >
-                {link.label}
-                {pathname === link.href && (
-                  <span className="absolute -bottom-1.5 left-0 h-px w-full bg-pierre-500" />
-                )}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "group relative py-1 text-sm font-medium tracking-wide transition-colors duration-500",
+                    solid
+                      ? cn(
+                          "text-anthracite/80 hover:text-anthracite",
+                          isActive && "text-anthracite"
+                        )
+                      : cn(
+                          "text-creme/80 hover:text-creme",
+                          isActive && "text-creme"
+                        )
+                  )}
+                >
+                  {link.label}
+                  <span
+                    className={cn(
+                      "absolute -bottom-1 left-0 h-px bg-breton-500 transition-all duration-300 ease-premium",
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    )}
+                    aria-hidden="true"
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="hidden lg:block">
@@ -113,7 +120,10 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="border-b border-ardoise-100 py-4 text-lg font-medium text-anthracite"
+                    className={cn(
+                      "border-b border-ardoise-100 py-4 text-lg font-medium text-anthracite transition-colors duration-200 active:text-breton-600",
+                      pathname === link.href && "text-breton-600"
+                    )}
                   >
                     {link.label}
                   </Link>

@@ -49,23 +49,25 @@ export default function PrestationsPage() {
               <Reveal key={service.slug} delay={(index % 3) * 0.08}>
                 <Link
                   href={`/prestations/${service.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-sm border border-ardoise-100"
+                  className="group flex h-full flex-col overflow-hidden rounded-lg border border-ardoise-100 bg-white shadow-sm transition-all duration-500 ease-premium hover:-translate-y-1.5 hover:border-ardoise-200 hover:shadow-xl"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={service.image}
                       alt={service.title}
                       fill
-                      className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 ease-premium group-hover:scale-110"
                       sizes="(min-width: 1024px) 30vw, 90vw"
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-7">
-                    <Icon
-                      name={service.icon}
-                      className="size-7 text-pierre-600"
-                      aria-hidden="true"
-                    />
+                    <div className="flex size-12 items-center justify-center rounded-full bg-ardoise-100 transition-colors duration-500 ease-premium group-hover:bg-breton-100">
+                      <Icon
+                        name={service.icon}
+                        className="size-5 text-ardoise-800 transition-colors duration-500 ease-premium group-hover:text-breton-700"
+                        aria-hidden="true"
+                      />
+                    </div>
                     <h2 className="mt-5 font-display text-xl text-anthracite">
                       {service.title}
                     </h2>
@@ -74,7 +76,7 @@ export default function PrestationsPage() {
                     </p>
                     <span className="mt-6 flex items-center gap-2 text-sm font-medium text-ardoise-900">
                       En savoir plus
-                      <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      <ArrowRight className="size-4 transition-transform duration-300 ease-premium group-hover:translate-x-1" />
                     </span>
                   </div>
                 </Link>
