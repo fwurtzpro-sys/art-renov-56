@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 import { palette } from "@/config/theme";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 
 /* Typographies auto-hébergées par next/font (aucune requête vers Google côté visiteur). */
 const serif = Cormorant_Garamond({
@@ -50,7 +51,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr" className={`${serif.variable} ${sans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <MotionProvider>{children}</MotionProvider>
+      </body>
     </html>
   );
 }

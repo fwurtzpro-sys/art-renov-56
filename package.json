@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "motion": "^13.4.6",
     "next": "16.2.11",
     "nodemailer": "^10.0.12",
     "react": "19.2.8",

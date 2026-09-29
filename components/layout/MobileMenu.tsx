@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
+import { duration, ease, panelTransition } from "@/lib/motion";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
@@ -90,8 +93,14 @@ export function MobileMenu({ items, cta, phone, email }: MobileMenuProps) {
         <Icon name="menu" className="h-6 w-6" />
       </button>
 
+      <AnimatePresence>
       {open ? (
-        <div
+        <m.div
+          key="menu"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={panelTransition}
           ref={panelRef}
           id={PANEL_ID}
           role="dialog"
@@ -116,11 +125,18 @@ export function MobileMenu({ items, cta, phone, email }: MobileMenuProps) {
           </div>
 
           <nav aria-label="Navigation mobile" className="flex-1 px-5 pb-8 pt-4 sm:px-8">
-            <ul>
+            <m.ul
+              initial="hidden"
+              animate="visible"
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } } }}
+            >
               {items.map((item) => {
                 const active = isActivePath(pathname, item);
                 return (
-                  <li key={item.href}>
+                  <m.li
+                    key={item.href}
+                    variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { duration: duration.fast + 0.15, ease } } }}
+                  >
                     <Link
                       href={item.href}
                       onClick={close}
@@ -150,10 +166,10 @@ export function MobileMenu({ items, cta, phone, email }: MobileMenuProps) {
                         ))}
                       </ul>
                     ) : null}
-                  </li>
+                  </m.li>
                 );
               })}
-            </ul>
+            </m.ul>
 
             <div className="mt-8 space-y-5">
               <Link href={cta.href} onClick={close} className={buttonClasses({ variant: "gold", size: "lg", fullWidth: true })}>
@@ -174,8 +190,9 @@ export function MobileMenu({ items, cta, phone, email }: MobileMenuProps) {
               ) : null}
             </div>
           </nav>
-        </div>
+        </m.div>
       ) : null}
+      </AnimatePresence>
     </>
   );
 }

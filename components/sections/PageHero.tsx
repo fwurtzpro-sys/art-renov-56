@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Photo } from "@/components/ui/Photo";
+import { HeroItem } from "@/components/motion/Hero";
+import { heroDelay } from "@/lib/motion";
 import type { MediaKey, RouteKey } from "@/types";
 
 interface PageHeroProps {
@@ -36,13 +38,19 @@ export function PageHero({ route, eyebrow, title, intro, media, children }: Page
       )}
       <Container className={cn("pb-20 pt-10 sm:pb-24 lg:pb-28", media && "lg:pb-32")}>
         <Breadcrumb route={route} />
-        <div className="animate-fade-up mt-14 max-w-3xl lg:mt-20">
-          <p className="eyebrow">{eyebrow}</p>
-          <h1 id="page-titre" className="mt-6 font-serif text-display-lg font-medium">
+        <div className="mt-14 max-w-3xl lg:mt-20">
+          <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
+            {eyebrow}
+          </HeroItem>
+          <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-lg font-medium lg:text-display-page">
             {title}
-          </h1>
-          {intro ? <div className="mt-7 max-w-2xl text-lead text-ivoire/80">{intro}</div> : null}
-          {children}
+          </HeroItem>
+          {intro ? (
+            <HeroItem delay={heroDelay.text} className="mt-7 max-w-2xl text-lead text-ivoire/80">
+              {intro}
+            </HeroItem>
+          ) : null}
+          {children ? <HeroItem delay={heroDelay.actions}>{children}</HeroItem> : null}
         </div>
       </Container>
     </section>

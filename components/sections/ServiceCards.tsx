@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { Icon } from "@/components/ui/Icon";
 import { Photo } from "@/components/ui/Photo";
 import { routes } from "@/config/routes";
@@ -11,12 +12,12 @@ import { services } from "@/data/services";
  */
 export function ServiceCards() {
   return (
-    <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
+    <Stagger as="ul" className="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
       {services.map((service, index) => {
         const wide = index >= 3;
         return (
-          <li key={service.slug} className={cn(wide ? "lg:col-span-3" : "lg:col-span-2", index === 4 && "md:col-span-2 lg:col-span-3")}>
-            <article className="group relative flex h-full flex-col border border-line bg-marine-panel transition-colors duration-500 focus-within:border-or hover:border-or/60">
+          <StaggerItem as="li" key={service.slug} className={cn(wide ? "lg:col-span-3" : "lg:col-span-2", index === 4 && "md:col-span-2 lg:col-span-3")}>
+            <article className="group relative flex h-full flex-col border border-line bg-marine-panel transition-[transform,border-color] duration-500 ease-premium focus-within:border-or hover:-translate-y-1 hover:border-or/60 motion-reduce:transform-none">
               <Photo
                 media={service.image}
                 sizes={wide ? "(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"}
@@ -43,9 +44,9 @@ export function ServiceCards() {
                 </span>
               </div>
             </article>
-          </li>
+          </StaggerItem>
         );
       })}
-    </ul>
+    </Stagger>
   );
 }

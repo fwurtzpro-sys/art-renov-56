@@ -97,3 +97,39 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Animations (Motion) — garde-fous d'accessibilité                     */
+/* Le contenu ne dépend jamais du JavaScript pour être visible.         */
+/* ------------------------------------------------------------------ */
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Si le système d'animation ne démarre pas, tout redevient visible après 3 s. */
+html:not([data-motion="ready"]) [data-reveal] {
+  animation: reveal-failsafe 0.01s linear 3s forwards;
+}
+
+/* Pas de JavaScript, animations désactivées ou navigateur sans IntersectionObserver : contenu affiché tel quel. */
+html[data-motion="off"] [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (scripting: none) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 
 type HeadingLevel = "h1" | "h2" | "h3";
 
@@ -37,13 +38,19 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   const centered = align === "center";
   return (
-    <div className={cn("max-w-3xl", centered && "mx-auto text-center", className)}>
-      {eyebrow ? <p className={cn("eyebrow", centered && "eyebrow-center justify-center")}>{eyebrow}</p> : null}
-      <Tag id={id} className={cn("font-serif font-medium text-fg", sizeClasses[size], eyebrow && "mt-5")}>
+    <Stagger className={cn("max-w-3xl", centered && "mx-auto text-center", className)}>
+      {eyebrow ? (
+        <StaggerItem as="p" className={cn("eyebrow", centered && "eyebrow-center justify-center")}>
+          {eyebrow}
+        </StaggerItem>
+      ) : null}
+      <StaggerItem as={Tag} id={id} className={cn("font-serif font-medium text-fg", sizeClasses[size], eyebrow && "mt-5")}>
         {title}
-      </Tag>
-      {intro ? <div className={cn("mt-6 text-lead text-muted", centered && "mx-auto max-w-prose")}>{intro}</div> : null}
-    </div>
+      </StaggerItem>
+      {intro ? (
+        <StaggerItem className={cn("mt-6 text-lead text-muted", centered && "mx-auto max-w-prose")}>{intro}</StaggerItem>
+      ) : null}
+    </Stagger>
   );
 }
 

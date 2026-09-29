@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { Icon } from "@/components/ui/Icon";
 import { Photo } from "@/components/ui/Photo";
 import { ArrowLink } from "@/components/ui/Button";
@@ -9,12 +10,12 @@ import { services } from "@/data/services";
 /** Grandes cartes horizontales des 5 prestations (page Prestations), image alternée. */
 export function ServiceRows() {
   return (
-    <ol className="space-y-10 lg:space-y-16">
+    <Stagger as="ol" className="space-y-10 lg:space-y-16">
       {services.map((service, index) => {
         const path = routes[service.routeKey].path;
         const reversed = index % 2 === 1;
         return (
-          <li key={service.slug}>
+          <StaggerItem as="li" key={service.slug}>
             <article className="grid border border-line bg-ivoire-50 lg:grid-cols-2">
               <Link href={path} tabIndex={-1} aria-hidden className={cn("group block overflow-hidden", reversed && "lg:order-2")}>
                 <Photo media={service.image} sizes="(min-width: 1024px) 50vw, 100vw" frameClassName="aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[420px]" hoverZoom />
@@ -44,9 +45,9 @@ export function ServiceRows() {
                 </ArrowLink>
               </div>
             </article>
-          </li>
+          </StaggerItem>
         );
       })}
-    </ol>
+    </Stagger>
   );
 }

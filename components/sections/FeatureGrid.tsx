@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
 export interface FeatureItem {
@@ -27,9 +28,11 @@ const columnClasses = {
 /** Grille d'engagements / bénéfices : colonnes séparées par de fins filets. */
 export function FeatureGrid({ items, columns = 4, variant = "icon", className }: FeatureGridProps) {
   return (
-    <ul className={cn("grid gap-px border-y border-line bg-line", columnClasses[columns], className)}>
+    <Stagger as="ul" className={cn("grid gap-px border-y border-line bg-line", columnClasses[columns], className)}>
       {items.map((item, index) => (
-        <li key={item.title} className="flex flex-col bg-[var(--tone-bg)] px-6 py-10 sm:px-8 lg:py-12">
+        <li key={item.title} className="bg-[var(--tone-bg)]">
+          {/* Le fond de la cellule reste en place : seul son contenu apparaît (les filets ne « clignotent » pas). */}
+          <StaggerItem className="flex h-full flex-col px-6 py-10 sm:px-8 lg:py-12">
           {variant === "icon" && item.icon ? (
             <span className="flex h-14 w-14 items-center justify-center border border-or/50">
               <Icon name={item.icon} className="h-7 w-7 text-or" />
@@ -53,8 +56,9 @@ export function FeatureGrid({ items, columns = 4, variant = "icon", className }:
               ))}
             </ul>
           ) : null}
+          </StaggerItem>
         </li>
       ))}
-    </ul>
+    </Stagger>
   );
 }

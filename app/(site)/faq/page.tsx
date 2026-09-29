@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { HeroItem } from "@/components/motion/Hero";
+import { heroDelay } from "@/lib/motion";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -33,14 +35,16 @@ export default function FaqPage() {
           <Breadcrumb route="faq" />
 
           <header className="mt-14 max-w-3xl lg:mt-20">
-            <p className="eyebrow">FAQ</p>
-            <h1 id="page-titre" className="mt-6 font-serif text-display-xl font-medium">
+            <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
+              FAQ
+            </HeroItem>
+            <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-xl font-medium lg:text-display-page">
               Vos questions, <Accent>nos réponses.</Accent>
-            </h1>
-            <p className="mt-7 max-w-2xl text-lead text-muted">
+            </HeroItem>
+            <HeroItem as="p" delay={heroDelay.text} className="mt-7 max-w-2xl text-lead text-muted">
               Projet, devis, travaux, délais, intervention : voici les questions que l’on nous pose le plus souvent. Une autre
               question ? Écrivez-nous, nous vous répondrons.
-            </p>
+            </HeroItem>
           </header>
 
           {categories.length > 1 ? (

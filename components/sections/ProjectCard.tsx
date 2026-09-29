@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { Photo } from "@/components/ui/Photo";
 import { Icon } from "@/components/ui/Icon";
 import { routes } from "@/config/routes";
@@ -42,7 +43,7 @@ export function ProjectCard({
   }
 
   return (
-    <article className="group relative flex h-full flex-col">
+    <article className="group relative flex h-full flex-col transition-transform duration-500 ease-premium hover:-translate-y-1 motion-reduce:transform-none">
       <Photo media={project.cover} sizes={sizes} frameClassName={ratioClass} hoverZoom />
       <p className="mt-5 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-accent">
         {category}
@@ -75,15 +76,15 @@ export function ProjectGrid({
   className?: string;
 }) {
   return (
-    <ul className={cn("grid gap-x-6 gap-y-12 sm:grid-cols-2", columns === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3", className)}>
+    <Stagger as="ul" className={cn("grid gap-x-6 gap-y-12 sm:grid-cols-2", columns === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3", className)}>
       {projects.map((project) => (
-        <li key={project.slug}>
+        <StaggerItem as="li" key={project.slug}>
           <ProjectCard
             project={project}
             sizes={columns === 4 ? "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
           />
-        </li>
+        </StaggerItem>
       ))}
-    </ul>
+    </Stagger>
   );
 }

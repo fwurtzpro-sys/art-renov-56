@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { SplitHero } from "@/components/sections/SplitHero";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { ProjectShowcase } from "@/components/sections/ProjectShowcase";
@@ -107,12 +108,12 @@ export default function VmiPage() {
           intro="Contrairement à une VMC, qui extrait l’air vicié, la VMI fonctionne par insufflation : elle fait entrer de l’air neuf filtré dans le logement."
         />
         <div className="mt-14 grid items-center gap-12 lg:mt-20 lg:grid-cols-12">
-          <div className="border border-line p-4 sm:p-8 lg:col-span-7">
+          <Reveal className="border border-line p-4 sm:p-8 lg:col-span-7">
             <VmiDiagram />
-          </div>
-          <ol className="space-y-8 lg:col-span-5">
+          </Reveal>
+          <Stagger as="ol" className="space-y-8 lg:col-span-5">
             {vmiSteps.map((step, index) => (
-              <li key={step.title} className="flex gap-5">
+              <StaggerItem as="li" key={step.title} className="flex gap-5">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-or font-serif text-[1.25rem] text-or">
                   {index + 1}
                 </span>
@@ -120,9 +121,9 @@ export default function VmiPage() {
                   <h3 className="text-[0.875rem] font-semibold uppercase tracking-[0.16em]">{step.title}</h3>
                   <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">{step.text}</p>
                 </div>
-              </li>
+              </StaggerItem>
             ))}
-          </ol>
+          </Stagger>
         </div>
         <p className="mt-12 text-[0.8125rem] text-muted">Schéma de principe simplifié : chaque installation est adaptée au logement.</p>
       </Section>

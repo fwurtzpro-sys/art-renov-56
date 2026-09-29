@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { ButtonLink } from "@/components/ui/Button";
 import { SplitLayout } from "@/components/sections/SplitLayout";
+import { HeroItem } from "@/components/motion/Hero";
+import { heroDelay } from "@/lib/motion";
 import { quoteCta } from "@/config/navigation";
 import type { MediaKey, RouteKey } from "@/types";
 
@@ -22,15 +24,21 @@ export function SplitHero({ route, eyebrow, title, text, media, projectParam }: 
   return (
     <SplitLayout media={media} tone="dark" priority labelledBy="page-titre" minHeightClass="lg:min-h-[calc(100svh-6rem)] lg:max-h-[860px]">
       <Breadcrumb route={route} />
-      <div className="animate-fade-up mt-12 lg:mt-16">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1 id="page-titre" className="mt-6 font-serif text-display-lg font-medium">
+      <div className="mt-12 lg:mt-16">
+        <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
+          {eyebrow}
+        </HeroItem>
+        <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-lg font-medium lg:text-display-page">
           {title}
-        </h1>
-        <p className="mt-7 max-w-md text-lead text-ivoire/80">{text}</p>
-        <ButtonLink href={ctaHref} variant="gold" size="lg" className="mt-10">
-          {quoteCta.long}
-        </ButtonLink>
+        </HeroItem>
+        <HeroItem as="p" delay={heroDelay.text} className="mt-7 max-w-md text-lead text-ivoire/80">
+          {text}
+        </HeroItem>
+        <HeroItem delay={heroDelay.actions} className="mt-10">
+          <ButtonLink href={ctaHref} variant="gold" size="lg">
+            {quoteCta.long}
+          </ButtonLink>
+        </HeroItem>
       </div>
     </SplitLayout>
   );

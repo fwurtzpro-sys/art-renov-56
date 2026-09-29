@@ -7,7 +7,7 @@ export type ButtonVariant = "gold" | "outline" | "dark" | "light";
 export type ButtonSize = "md" | "lg" | "sm";
 
 const base =
-  "group inline-flex items-center justify-center gap-3 text-center font-sans font-semibold uppercase tracking-[0.14em] transition-colors duration-300 ease-premium disabled:pointer-events-none disabled:opacity-50";
+  "group inline-flex items-center justify-center gap-3 text-center font-sans font-semibold uppercase tracking-[0.14em] transition-[color,background-color,border-color,transform] duration-300 ease-premium hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-colors disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<ButtonVariant, string> = {
   /* Bouton principal : fond doré, texte marine (contraste ≈ 5,8:1) */

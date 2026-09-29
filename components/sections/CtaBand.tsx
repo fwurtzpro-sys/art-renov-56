@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Reveal } from "@/components/motion/Reveal";
 import { Section } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { quoteCta } from "@/config/navigation";
@@ -25,7 +26,7 @@ export function CtaBand({
 }: CtaBandProps) {
   return (
     <Section tone={tone} spacing="compact" labelledBy={id}>
-      <div className="flex flex-col gap-10 border-y border-line py-14 lg:flex-row lg:items-center lg:justify-between lg:py-16">
+      <Reveal className="flex flex-col gap-10 border-y border-line py-14 lg:flex-row lg:items-center lg:justify-between lg:py-16">
         <div className="max-w-2xl">
           {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
           <h2 id={id} className="mt-5 font-serif text-display-md font-medium text-fg first:mt-0">
@@ -43,7 +44,7 @@ export function CtaBand({
             </ButtonLink>
           ) : null}
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }

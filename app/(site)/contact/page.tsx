@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { HeroItem } from "@/components/motion/Hero";
+import { heroDelay } from "@/lib/motion";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
@@ -49,16 +51,18 @@ export default function ContactPage() {
         <div className="mt-14 grid gap-16 lg:mt-20 lg:grid-cols-12 lg:gap-12">
           {/* Gauche : titre, coordonnées, réassurance */}
           <div className="lg:col-span-5">
-            <p className="eyebrow">Contact</p>
-            <h1 id="page-titre" className="mt-6 font-serif text-display-xl font-medium">
+            <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
+              Contact
+            </HeroItem>
+            <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-xl font-medium lg:text-display-page">
               Parlons de
               <br />
               <Accent>votre projet.</Accent>
-            </h1>
-            <p className="mt-7 max-w-md text-lead text-ivoire/80">
+            </HeroItem>
+            <HeroItem as="p" delay={heroDelay.text} className="mt-7 max-w-md text-lead text-ivoire/80">
               Décrivez-nous votre projet en quelques lignes. Nous revenons vers vous pour en discuter et vous proposer un devis
               gratuit et sans engagement.
-            </p>
+            </HeroItem>
 
             <ul className="mt-12">
               <ContactLine icon="phone" label="Téléphone">

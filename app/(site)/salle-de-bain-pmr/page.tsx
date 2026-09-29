@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal } from "@/components/motion/Reveal";
 import { SplitHero } from "@/components/sections/SplitHero";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
@@ -125,7 +126,7 @@ export default function BathroomPage() {
         }
         ctaLabel="Voir plus de réalisations"
       >
-        <div className="mt-20 grid items-center gap-10 lg:grid-cols-12">
+        <Reveal className="mt-20 grid items-center gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <h3 className="font-serif text-display-sm font-medium">Avant / après</h3>
             <p className="mt-4 text-muted">Faites glisser le curseur pour comparer la salle de bain avant et après travaux.</p>
@@ -134,7 +135,7 @@ export default function BathroomPage() {
             </p>
           </div>
           <BeforeAfter before="bathroomBefore" after="bathroomAfter" className="lg:col-span-8" />
-        </div>
+        </Reveal>
       </ProjectShowcase>
 
       <Section tone="dark" labelledBy="methode-titre">

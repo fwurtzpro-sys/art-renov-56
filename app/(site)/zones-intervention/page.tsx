@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { PageHero } from "@/components/sections/PageHero";
 import { AreaMap } from "@/components/sections/AreaMap";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -56,7 +57,7 @@ export default function AreasPage() {
 
       <Section tone="light" labelledBy="secteur-titre">
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-6">
+          <Stagger className="lg:col-span-6">
             <SectionHeading
               id="secteur-titre"
               eyebrow="Notre secteur"
@@ -66,7 +67,7 @@ export default function AreasPage() {
                 </>
               }
             />
-            <div className="mt-8 space-y-5 text-[1.0625rem] leading-relaxed text-muted">
+            <StaggerItem className="mt-8 space-y-5 text-[1.0625rem] leading-relaxed text-muted">
               <p>
                 Installés à Elven, nous connaissons bien le secteur de Vannes et sa périphérie. Nous nous déplaçons pour
                 découvrir votre logement, comprendre votre projet et vous proposer des solutions réalistes.
@@ -75,11 +76,11 @@ export default function AreasPage() {
                 Vous n’êtes pas certain que votre commune soit dans notre secteur ? Décrivez-nous votre projet : nous vous
                 confirmons rapidement si nous pouvons intervenir.
               </p>
-            </div>
-          </div>
-          <div className="border border-line lg:col-span-6">
+            </StaggerItem>
+          </Stagger>
+          <Reveal className="border border-line lg:col-span-6" delay={0.1}>
             <AreaMap />
-          </div>
+          </Reveal>
         </div>
       </Section>
 
@@ -94,15 +95,17 @@ export default function AreasPage() {
           }
           intro="Quelques communes du secteur, ainsi que les communes environnantes."
         />
-        <ul className="mt-14 grid gap-px border-y border-line bg-line sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
+        <Stagger as="ul" className="mt-14 grid gap-px border-y border-line bg-line sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
           {sectors.map((sector) => (
-            <li key={sector.name} className="bg-marine px-6 py-10 sm:px-8">
-              <Icon name="mapPin" className="h-6 w-6 text-or" />
-              <h3 className="mt-6 font-serif text-display-sm font-medium">{sector.name}</h3>
-              <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">{sector.text}</p>
+            <li key={sector.name} className="bg-marine">
+              <StaggerItem className="px-6 py-10 sm:px-8">
+                <Icon name="mapPin" className="h-6 w-6 text-or" />
+                <h3 className="mt-6 font-serif text-display-sm font-medium">{sector.name}</h3>
+                <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">{sector.text}</p>
+              </StaggerItem>
             </li>
           ))}
-        </ul>
+        </Stagger>
       </Section>
 
       <Section tone="light" labelledBy="conseils-titre">
@@ -115,16 +118,16 @@ export default function AreasPage() {
             </>
           }
         />
-        <ul className="mt-14 grid gap-10 md:grid-cols-3 lg:mt-20">
+        <Stagger as="ul" className="mt-14 grid gap-10 md:grid-cols-3 lg:mt-20">
           {advice.map((item) => (
-            <li key={item.title} className="border-t border-or pt-6">
+            <StaggerItem as="li" key={item.title} className="border-t border-or pt-6">
               <h3 className="font-serif text-display-sm font-medium">{item.title}</h3>
               <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">{item.text}</p>
-            </li>
+            </StaggerItem>
           ))}
-        </ul>
+        </Stagger>
 
-        <div className="mt-20 border border-line bg-ivoire-50 p-8 sm:p-10">
+        <Reveal className="mt-20 border border-line bg-ivoire-50 p-8 sm:p-10">
           <h3 className="font-serif text-display-sm font-medium">Ce que nous réalisons dans votre commune</h3>
           <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
@@ -139,7 +142,7 @@ export default function AreasPage() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       </Section>
 
       <CtaBand

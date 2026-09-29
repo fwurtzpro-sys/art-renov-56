@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import Link from "next/link";
 import { SplitHero } from "@/components/sections/SplitHero";
 import { SplitLayout } from "@/components/sections/SplitLayout";
@@ -114,20 +115,24 @@ export default function RenovationPage() {
       />
 
       <SplitLayout media="renovationDetail" tone="dark" labelledBy="exigence-titre">
-        <p className="eyebrow">Notre exigence</p>
-        <h2 id="exigence-titre" className="mt-6 font-serif text-display-md font-medium">
-          L’exigence du détail,
-          <br />
-          <Accent>la passion du métier.</Accent>
-        </h2>
-        <ul className="mt-10 space-y-5">
-          {details.map((item) => (
-            <li key={item} className="flex items-start gap-4 border-b border-line pb-5 text-[1rem]">
-              <Icon name="check" className="mt-0.5 h-5 w-5 shrink-0 text-or" />
-              {item}
-            </li>
-          ))}
-        </ul>
+        <Stagger>
+          <StaggerItem as="p" className="eyebrow">
+            Notre exigence
+          </StaggerItem>
+          <StaggerItem as="h2" id="exigence-titre" className="mt-6 font-serif text-display-md font-medium">
+            L’exigence du détail,
+            <br />
+            <Accent>la passion du métier.</Accent>
+          </StaggerItem>
+          <Stagger as="ul" className="mt-10 space-y-5">
+            {details.map((item) => (
+              <StaggerItem as="li" key={item} className="flex items-start gap-4 border-b border-line pb-5 text-[1rem]">
+                <Icon name="check" className="mt-0.5 h-5 w-5 shrink-0 text-or" />
+                {item}
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </Stagger>
       </SplitLayout>
 
       <CtaBand

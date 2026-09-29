@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HeaderEntrance } from "@/components/motion/HeaderEntrance";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/layout/Logo";
@@ -18,6 +19,7 @@ export function Header() {
 
   return (
     <header className="tone-dark sticky top-0 z-50 border-b border-line bg-marine text-ivoire">
+      <HeaderEntrance>
       <Container size="wide" className="flex h-header items-center justify-between gap-4 xl:h-header-xl xl:gap-6">
         <Logo />
 
@@ -27,7 +29,7 @@ export function Header() {
           {/* CTA desktop : encadré doré sur deux lignes */}
           <Link
             href={quoteCta.href}
-            className="group hidden shrink-0 flex-col items-center whitespace-nowrap border border-or px-5 py-3 wide:py-2.5 text-center transition-colors duration-300 hover:bg-or xl:flex"
+            className="group relative isolate hidden shrink-0 flex-col items-center overflow-hidden whitespace-nowrap border border-or px-5 py-3 wide:py-2.5 text-center before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-or before:transition-transform before:duration-300 before:ease-premium hover:before:scale-x-100 focus-visible:before:scale-x-100 motion-reduce:before:transition-none xl:flex"
           >
             <span className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-or transition-colors group-hover:text-marine">
               {quoteCta.label}
@@ -61,6 +63,7 @@ export function Header() {
           <MobileMenu items={mainNav} cta={{ label: quoteCta.long, href: quoteCta.href }} phone={phone} email={email} />
         </div>
       </Container>
+      </HeaderEntrance>
     </header>
   );
 }

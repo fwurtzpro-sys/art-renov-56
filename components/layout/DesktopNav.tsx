@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import * as m from "motion/react-m";
+import { panelTransition } from "@/lib/motion";
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
@@ -14,7 +16,7 @@ export function isActivePath(pathname: string, item: NavItem): boolean {
 }
 
 const linkBase =
-  "relative inline-flex h-full items-center whitespace-nowrap py-2 font-sans text-nav font-semibold uppercase text-ivoire/85 transition-colors duration-300 hover:text-ivoire";
+  "group relative inline-flex h-full items-center whitespace-nowrap py-2 font-sans text-nav font-semibold uppercase text-ivoire/85 transition-colors duration-300 hover:text-ivoire";
 
 /** Trait doré sous l'entrée active. */
 function ActiveMark({ active }: { active: boolean }) {
@@ -23,7 +25,7 @@ function ActiveMark({ active }: { active: boolean }) {
       aria-hidden
       className={cn(
         "absolute -bottom-0.5 left-0 h-px w-full origin-left bg-or transition-transform duration-500 ease-premium",
-        active ? "scale-x-100" : "scale-x-0",
+        active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-[0.35]",
       )}
     />
   );
@@ -124,11 +126,18 @@ function NavDropdown({ item, active, pathname }: { item: NavItem; active: boolea
         <Icon name="chevronDown" className={cn("h-3.5 w-3.5 transition-transform duration-300", open && "rotate-180")} />
       </button>
 
-      <ul
+      {/* Toujours monté (navigation clavier) ; `visibility` bascule à la fin du fondu de fermeture. */}
+      <m.ul
         ref={panelRef}
         id={panelId}
-        hidden={!open}
-        className="tone-dark absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 border border-line border-t-or bg-marine py-3"
+        initial={false}
+        animate={open ? "open" : "closed"}
+        variants={{
+          open: { opacity: 1, y: 0, visibility: "visible", transition: panelTransition },
+          closed: { opacity: 0, y: -8, transition: panelTransition, transitionEnd: { visibility: "hidden" } },
+        }}
+        style={{ visibility: "hidden" }}
+        className="tone-dark absolute left-1/2 top-full z-50 -ml-36 w-72 border border-line border-t-or bg-marine py-3"
       >
         {item.children?.map((child) => {
           const current = pathname === child.href;
@@ -152,7 +161,7 @@ function NavDropdown({ item, active, pathname }: { item: NavItem; active: boolea
             </li>
           );
         })}
-      </ul>
+      </m.ul>
     </div>
   );
 }

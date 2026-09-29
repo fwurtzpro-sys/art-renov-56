@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { HeroItem } from "@/components/motion/Hero";
+import { heroDelay } from "@/lib/motion";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section } from "@/components/ui/Section";
 import { Photo } from "@/components/ui/Photo";
@@ -41,12 +43,14 @@ export default function AboutPage() {
           <Breadcrumb route="about" />
           <div className="mt-14 grid items-center gap-14 lg:mt-20 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-6 lg:pr-8">
-              <p className="eyebrow">À propos</p>
-              <h1 id="page-titre" className="mt-6 font-serif text-display-xl font-medium">
+              <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
+                À propos
+              </HeroItem>
+              <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-xl font-medium lg:text-display-page">
                 Une passion,
                 <br />
                 <Accent>votre intérieur</Accent>
-              </h1>
+              </HeroItem>
               <div className="mt-8 max-w-xl space-y-5 text-[1.0625rem] leading-relaxed text-muted">
                 <p>
                   ART RÉNOV 56 est une entreprise de rénovation intérieure et d’aménagement basée à Elven, dans le Morbihan.

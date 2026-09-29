@@ -6,8 +6,8 @@
  * automatiquement sur le site public (voir `isProvided`) et jamais émise
  * dans les données structurées.
  *
- * Les coordonnées (téléphone, email, adresse) ne sont renseignées qu'après
- * confirmation explicite par ART RÉNOV 56.
+ * Téléphone et email : confirmés par ART RÉNOV 56. L'adresse postale reste à
+ * renseigner après confirmation explicite.
  */
 
 export const A_RENSEIGNER = "À RENSEIGNER" as const;
@@ -44,8 +44,8 @@ export const siteConfig = {
 
   contact: {
     /** Format d'affichage, ex. "06 00 00 00 00". */
-    phone: A_RENSEIGNER,
-    email: A_RENSEIGNER,
+    phone: "06 03 87 78 67",
+    email: "artrenov56.bzh@gmail.com",
   },
 
   address: {

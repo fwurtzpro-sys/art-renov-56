@@ -62,7 +62,7 @@ export function LegalLayout({ route, eyebrow = "Informations légales", title, i
 
           <article>
             <p className="eyebrow">{eyebrow}</p>
-            <h1 id="page-titre" className="mt-5 font-serif text-display-lg font-medium">
+            <h1 id="page-titre" className="mt-5 font-serif text-display-lg font-medium lg:text-display-page">
               {title}
             </h1>
             <p className="mt-5 text-[0.875rem] text-muted">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { ImageReveal } from "@/components/motion/ImageReveal";
 import { getMedia, type MediaKey } from "@/data/media";
 
 interface PhotoProps {
@@ -40,23 +41,26 @@ export function Photo({
 }: PhotoProps) {
   const asset = getMedia(media);
 
+  const content = asset.src ? (
+    <Image
+      src={asset.src}
+      alt={asset.alt}
+      fill
+      sizes={sizes}
+      priority={priority}
+      className={cn(
+        "object-cover",
+        hoverZoom && "transition-transform duration-[1200ms] ease-premium group-hover:scale-[1.03]",
+      )}
+    />
+  ) : (
+    <PhotoPlaceholder alt={asset.alt} />
+  );
+
   return (
     <div className={cn("relative overflow-hidden bg-marine-panel", frameClassName, className)}>
-      {asset.src ? (
-        <Image
-          src={asset.src}
-          alt={asset.alt}
-          fill
-          sizes={sizes}
-          priority={priority}
-          className={cn(
-            "object-cover",
-            hoverZoom && "transition-transform duration-[1200ms] ease-premium group-hover:scale-[1.03]",
-          )}
-        />
-      ) : (
-        <PhotoPlaceholder alt={asset.alt} />
-      )}
+      {/* Photos de héros (priority) : visibles d'emblée ; les autres se révèlent au scroll. */}
+      {priority ? content : <ImageReveal>{content}</ImageReveal>}
       {overlay !== "none" ? <div aria-hidden className={cn("absolute inset-0", overlays[overlay])} /> : null}
     </div>
   );
