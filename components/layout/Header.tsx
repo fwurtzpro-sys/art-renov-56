@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { HeaderEntrance } from "@/components/motion/HeaderEntrance";
 import { Container } from "@/components/ui/Container";
-import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/layout/Logo";
 import { DesktopNav } from "@/components/layout/DesktopNav";
 import { MobileMenu } from "@/components/layout/MobileMenu";
@@ -10,7 +8,7 @@ import { getEmail, getPhone } from "@/config/site";
 
 /**
  * Header global marine.
- * Desktop (≥ 1280 px) : logo · navigation · CTA devis · téléphone.
+ * Desktop (≥ 1280 px) : logo · navigation · CTA devis.
  * Mobile / tablette : logo · CTA devis simplifié · bouton menu.
  */
 export function Header() {
@@ -19,7 +17,7 @@ export function Header() {
 
   return (
     <header className="tone-dark sticky top-0 z-50 border-b border-line bg-marine text-ivoire">
-      <HeaderEntrance>
+      <div className="header-in">
       <Container size="wide" className="flex h-header items-center justify-between gap-4 xl:h-header-xl xl:gap-6">
         <Logo />
 
@@ -47,23 +45,10 @@ export function Header() {
             Devis<span className="hidden sm:inline">&nbsp;gratuit</span>
           </Link>
 
-          {phone ? (
-            <a
-              href={phone.href}
-              className="hidden items-center gap-2.5 text-ivoire transition-colors hover:text-or xl:inline-flex"
-              aria-label={`Appeler ART RÉNOV 56 au ${phone.display}`}
-            >
-              <Icon name="phone" className="h-[1.125rem] w-[1.125rem] text-or" />
-              <span className="hidden whitespace-nowrap text-[0.875rem] font-medium tracking-[0.04em] wide:inline">
-                {phone.display}
-              </span>
-            </a>
-          ) : null}
-
           <MobileMenu items={mainNav} cta={{ label: quoteCta.long, href: quoteCta.href }} phone={phone} email={email} />
         </div>
       </Container>
-      </HeaderEntrance>
+      </div>
     </header>
   );
 }

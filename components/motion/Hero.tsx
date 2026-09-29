@@ -1,26 +1,25 @@
-"use client";
-
-import * as m from "motion/react-m";
-import type { ReactNode } from "react";
-import { heroVariants } from "@/lib/motion";
+import type { CSSProperties, ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 type Tag = "div" | "p" | "h1";
-const tags = { div: m.div, p: m.p, h1: m.h1 } as const;
 
 interface HeroItemProps {
   children: ReactNode;
-  /** Délai absolu (s) dans la séquence d'entrée — voir `heroDelay`. */
+  /** Délai (s) dans la séquence d'entrée — voir `heroDelay`. */
   delay: number;
   as?: Tag;
   className?: string;
   id?: string;
 }
 
-/** Élément de la séquence d'entrée d'un héros (jouée au chargement, sans attendre le scroll). */
-export function HeroItem({ children, delay, as = "div", className, id }: HeroItemProps) {
-  const Component = tags[as];
+/**
+ * Élément de la séquence d'entrée d'un héros : animation CSS (`.hero-in`, globals.css).
+ * Elle démarre dès le premier affichage, sans attendre JavaScript, et se termine
+ * d'elle-même : le contenu ne peut pas rester masqué.
+ */
+export function HeroItem({ children, delay, as: Component = "div", className, id }: HeroItemProps) {
   return (
-    <Component data-reveal id={id} className={className} variants={heroVariants} custom={delay} initial="hidden" animate="visible">
+    <Component id={id} className={cn("hero-in", className)} style={{ "--hero-delay": `${delay}s` } as CSSProperties}>
       {children}
     </Component>
   );
@@ -36,16 +35,12 @@ export function HeroWords({ text, delay, step = 0.045 }: { text: string; delay: 
     <>
       {words.map((word, index) => (
         <span key={`${word}-${index}`}>
-          <m.span
-            data-reveal
-            className="inline-block"
-            variants={heroVariants}
-            custom={delay + index * step}
-            initial="hidden"
-            animate="visible"
+          <span
+            className="hero-in inline-block"
+            style={{ "--hero-delay": `${(delay + index * step).toFixed(3)}s` } as CSSProperties}
           >
             {word}
-          </m.span>
+          </span>
           {index < words.length - 1 ? " " : null}
         </span>
       ))}
