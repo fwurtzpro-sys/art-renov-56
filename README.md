@@ -41,7 +41,7 @@ assets/fonts/           police utilisée au build pour l'image Open Graph
 
 - **Aucune information inventée.** Une donnée inconnue vaut `A_RENSEIGNER` dans
   `config/site.ts` : elle est masquée sur le site et jamais émise en données structurées.
-- Les coordonnées reprises de l'ancien site sont marquées « À CONFIRMER ».
+- Téléphone, email et adresse restent « À RENSEIGNER » tant que l'entreprise ne les a pas confirmés : ils ne sont ni affichés ni émis dans Schema.org.
 - Aucun faux chantier ni faux avis. Les projets d'illustration portent `isPlaceholder: true`.
 - Remplacer une photo : déposer le fichier dans `public/images/…` puis renseigner l'entrée
   correspondante de `data/media.ts`. Un emplacement vide affiche un placeholder sans décalage.
@@ -57,3 +57,17 @@ assets/fonts/           police utilisée au build pour l'image Open Graph
 Non développé. Préparé par : groupe de routes `(site)` isolé (un groupe `(espace-client)`
 aura son propre layout), préfixes `/espace-client`, `/admin`, `/api/` exclus de l'indexation,
 type `Lead` pour les demandes de devis.
+
+## Formulaire de contact
+
+`POST /api/contact` (Node.js requis) : contrôle d'origine, limitation de débit, honeypot + temps
+minimal de saisie, validation serveur (`lib/contact.ts`, partagée avec le client), pièces jointes
+vérifiées par signature binaire (5 fichiers, 5 Mo max), envoi SMTP (`lib/leads.ts`), rien n'est
+stocké. Tant que les variables `SMTP_*` / `CONTACT_*` de `.env.example` ne sont pas renseignées,
+l'API répond 503 et le visiteur en est informé.
+
+## Consentement
+
+`config/consent.ts` : liste vide = aucun service soumis à consentement, donc pas de bandeau.
+Ajouter une catégorie active le bandeau (Tout accepter / Tout refuser / Personnaliser) ;
+charger les scripts concernés uniquement via `<ConsentGate>`.

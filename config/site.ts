@@ -6,9 +6,8 @@
  * automatiquement sur le site public (voir `isProvided`) et jamais émise
  * dans les données structurées.
  *
- * Les coordonnées marquées « À CONFIRMER » proviennent de l'ancienne version
- * du site : elles sont affichées pour le développement mais doivent être
- * validées par ART RÉNOV 56 avant la mise en ligne.
+ * Les coordonnées (téléphone, email, adresse) ne sont renseignées qu'après
+ * confirmation explicite par ART RÉNOV 56.
  */
 
 export const A_RENSEIGNER = "À RENSEIGNER" as const;
@@ -44,15 +43,14 @@ export const siteConfig = {
   },
 
   contact: {
-    /** À CONFIRMER — repris de l'ancien site. */
-    phone: "06 03 87 78 67",
-    /** À CONFIRMER — repris de l'ancien site. */
-    email: "art-renov56@gmail.com",
+    /** Format d'affichage, ex. "06 00 00 00 00". */
+    phone: A_RENSEIGNER,
+    email: A_RENSEIGNER,
   },
 
   address: {
-    /** À CONFIRMER — repris de l'ancien site. */
-    street: "51 avenue de l'Argoët",
+    /** Numéro et rue — affichés uniquement si `showStreet` vaut true. */
+    street: A_RENSEIGNER,
     postalCode: "56250",
     city: "Elven",
     department: "Morbihan",
@@ -120,7 +118,7 @@ export type SiteConfig = typeof siteConfig;
 /* Helpers dérivés — à utiliser plutôt que de reformater dans les composants */
 /* ------------------------------------------------------------------ */
 
-/** "06 03 87 78 67" -> "+33603877867" */
+/** "06 00 00 00 00" -> "+33600000000" */
 export function phoneToE164(phone: string): string {
   const digits = phone.replace(/[^\d+]/g, "");
   if (digits.startsWith("+")) return digits;

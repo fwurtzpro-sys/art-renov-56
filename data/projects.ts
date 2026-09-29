@@ -32,6 +32,50 @@ export const projectCategories: ReadonlyArray<{ id: ProjectCategory; label: stri
  */
 export const projects: ReadonlyArray<Project> = [];
 
+/* ------------------------------------------------------------------ */
+/* Projets d'exemple (placeholders)                                     */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Tant qu'aucune réalisation réelle n'est publiée, les sections « Réalisations »
+ * affichent des emplacements d'exemple. Ils sont :
+ * - clairement libellés « Projet exemple » à l'écran ;
+ * - sans commune, sans description, sans fiche détaillée ;
+ * - exclus du sitemap et de toute donnée structurée.
+ */
+function demoProject(category: ProjectCategory, index: number): Project {
+  return {
+    slug: `exemple-${category}-${index + 1}`,
+    title: "Réalisation à venir",
+    category,
+    description: "",
+    cover: "projectPlaceholder",
+    isPlaceholder: true,
+  };
+}
+
+/**
+ * Projets à afficher dans une section « Réalisations ».
+ * Réalisations réelles en priorité ; à défaut, emplacements d'exemple.
+ */
+export function getShowcaseProjects(options: { category?: ProjectCategory; limit: number }): ReadonlyArray<Project> {
+  const { category, limit } = options;
+  const real = getPublishedProjects().filter((project) => !category || project.category === category);
+  if (real.length > 0) return real.slice(0, limit);
+
+  const categories = category ? [category] : projectCategories.map((item) => item.id);
+  return Array.from({ length: limit }, (_, index) =>
+    demoProject(categories[index % categories.length] as ProjectCategory, Math.floor(index / categories.length)),
+  );
+}
+
+/** Tous les projets de la galerie : réels, ou 2 exemples par catégorie. */
+export function getGalleryProjects(): ReadonlyArray<Project> {
+  const real = getPublishedProjects();
+  if (real.length > 0) return real;
+  return projectCategories.flatMap((item) => [demoProject(item.id, 0), demoProject(item.id, 1)]);
+}
+
 export function getProjectsByCategory(category?: ProjectCategory): ReadonlyArray<Project> {
   return category ? projects.filter((project) => project.category === category) : projects;
 }

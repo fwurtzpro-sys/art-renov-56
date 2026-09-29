@@ -5,21 +5,21 @@ import type { RouteKey, SiteRoute } from "@/types";
  * `ready: true` dès que la page est développée : elle entre alors dans le sitemap.
  */
 export const routes = {
-  home: { path: "/", label: "Accueil", ready: false, sitemap: { priority: 1, changeFrequency: "monthly" } },
-  services: { path: "/prestations", label: "Prestations", parent: "home", ready: false, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
-  renovation: { path: "/renovation-interieure", label: "Rénovation intérieure", parent: "services", ready: false, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
-  bathroom: { path: "/salle-de-bain-pmr", label: "Salle de bain & PMR", parent: "services", ready: false, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
-  vmi: { path: "/vmi-ventilation", label: "VMI / Ventilation", parent: "services", ready: false, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
-  kitchen: { path: "/cuisine", label: "Cuisine", parent: "services", ready: false, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
-  finishes: { path: "/revetements-finitions", label: "Revêtements & finitions", parent: "services", ready: false, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
-  projects: { path: "/realisations", label: "Réalisations", parent: "home", ready: false, sitemap: { priority: 0.8, changeFrequency: "weekly" } },
-  about: { path: "/a-propos", label: "À propos", parent: "home", ready: false, sitemap: { priority: 0.7, changeFrequency: "yearly" } },
-  areas: { path: "/zones-intervention", label: "Zones d'intervention", parent: "home", ready: false, sitemap: { priority: 0.8, changeFrequency: "yearly" } },
-  faq: { path: "/faq", label: "FAQ", parent: "home", ready: false, sitemap: { priority: 0.6, changeFrequency: "monthly" } },
-  contact: { path: "/contact", label: "Contact", parent: "home", ready: false, sitemap: { priority: 0.8, changeFrequency: "yearly" } },
-  legal: { path: "/mentions-legales", label: "Mentions légales", parent: "home", ready: false, sitemap: { priority: 0.2, changeFrequency: "yearly" } },
-  privacy: { path: "/politique-confidentialite", label: "Politique de confidentialité", parent: "home", ready: false, sitemap: { priority: 0.2, changeFrequency: "yearly" } },
-  cookies: { path: "/cookies", label: "Cookies", parent: "home", ready: false, sitemap: { priority: 0.2, changeFrequency: "yearly" } },
+  home: { path: "/", label: "Accueil", ready: true, sitemap: { priority: 1, changeFrequency: "monthly" } },
+  services: { path: "/prestations", label: "Prestations", parent: "home", ready: true, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
+  renovation: { path: "/renovation-interieure", label: "Rénovation intérieure", parent: "services", ready: true, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
+  bathroom: { path: "/salle-de-bain-pmr", label: "Salle de bain & PMR", parent: "services", ready: true, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
+  vmi: { path: "/vmi-ventilation", label: "VMI / Ventilation", parent: "services", ready: true, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
+  kitchen: { path: "/cuisine", label: "Cuisine", parent: "services", ready: true, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
+  finishes: { path: "/revetements-finitions", label: "Revêtements & finitions", parent: "services", ready: true, sitemap: { priority: 0.9, changeFrequency: "monthly" } },
+  projects: { path: "/realisations", label: "Réalisations", parent: "home", ready: true, sitemap: { priority: 0.8, changeFrequency: "weekly" } },
+  about: { path: "/a-propos", label: "À propos", parent: "home", ready: true, sitemap: { priority: 0.7, changeFrequency: "yearly" } },
+  areas: { path: "/zones-intervention", label: "Zones d'intervention", parent: "home", ready: true, sitemap: { priority: 0.8, changeFrequency: "yearly" } },
+  faq: { path: "/faq", label: "FAQ", parent: "home", ready: true, sitemap: { priority: 0.6, changeFrequency: "monthly" } },
+  contact: { path: "/contact", label: "Contact", parent: "home", ready: true, sitemap: { priority: 0.8, changeFrequency: "yearly" } },
+  legal: { path: "/mentions-legales", label: "Mentions légales", parent: "home", ready: true, sitemap: { priority: 0.2, changeFrequency: "yearly" } },
+  privacy: { path: "/politique-confidentialite", label: "Politique de confidentialité", parent: "home", ready: true, sitemap: { priority: 0.2, changeFrequency: "yearly" } },
+  cookies: { path: "/cookies", label: "Cookies", parent: "home", ready: true, sitemap: { priority: 0.2, changeFrequency: "yearly" } },
 } as const satisfies Record<RouteKey, SiteRoute>;
 
 export function href(key: RouteKey): string {

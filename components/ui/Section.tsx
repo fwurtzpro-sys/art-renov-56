@@ -5,10 +5,10 @@ import { Container } from "@/components/ui/Container";
 export type SectionTone = "dark" | "anthracite" | "light" | "light-alt";
 
 const toneClasses: Record<SectionTone, string> = {
-  dark: "tone-dark bg-noir text-ivoire",
-  anthracite: "tone-dark bg-anthracite text-ivoire",
-  light: "tone-light bg-ivoire text-encre",
-  "light-alt": "tone-light bg-ivoire-50 text-encre",
+  dark: "tone-dark bg-noir text-ivoire [--tone-bg:#0B0B0A]",
+  anthracite: "tone-dark bg-anthracite text-ivoire [--tone-bg:#1C1B19]",
+  light: "tone-light bg-ivoire text-encre [--tone-bg:#F5F0E6]",
+  "light-alt": "tone-light bg-ivoire-50 text-encre [--tone-bg:#FBF8F2]",
 };
 
 const spacingClasses = {

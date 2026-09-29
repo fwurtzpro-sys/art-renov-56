@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { ButtonLink } from "@/components/ui/Button";
 import { Logo } from "@/components/layout/Logo";
+import { PendingValue } from "@/components/ui/PendingValue";
 import { footerQuickLinks, footerServiceLinks, legalNav, quoteCta } from "@/config/navigation";
 import { getEmail, getPhone, getPublicLocality, getSocialLinks, isProvided, siteConfig } from "@/config/site";
 import type { NavItem } from "@/types";
@@ -84,13 +85,25 @@ export function Footer() {
                   <Icon name="phone" className="h-[1.125rem] w-[1.125rem] shrink-0 text-or" />
                   {phone.display}
                 </a>
-              ) : null}
+              ) : (
+                <p className="flex items-center gap-3 text-[0.9375rem] text-ivoire/80">
+                  <Icon name="phone" className="h-[1.125rem] w-[1.125rem] shrink-0 text-or" />
+                  <span className="sr-only">Téléphone :</span>
+                  <PendingValue />
+                </p>
+              )}
               {email ? (
                 <a href={email.href} className="flex items-center gap-3 break-all text-[0.9375rem] text-ivoire transition-colors hover:text-or">
                   <Icon name="mail" className="h-[1.125rem] w-[1.125rem] shrink-0 text-or" />
                   {email.display}
                 </a>
-              ) : null}
+              ) : (
+                <p className="flex items-center gap-3 text-[0.9375rem] text-ivoire/80">
+                  <Icon name="mail" className="h-[1.125rem] w-[1.125rem] shrink-0 text-or" />
+                  <span className="sr-only">Email :</span>
+                  <PendingValue />
+                </p>
+              )}
               <p className="flex items-start gap-3 text-[0.9375rem] text-ivoire/80">
                 <Icon name="mapPin" className="mt-0.5 h-[1.125rem] w-[1.125rem] shrink-0 text-or" />
                 <span>

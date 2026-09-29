@@ -72,6 +72,10 @@ export interface Service {
   name: string;
   /** Description courte pour les cartes (1 à 2 phrases). */
   excerpt: string;
+  /** Présentation plus complète (page Prestations). */
+  description: string;
+  /** 3 points clés affichés sur la page Prestations. */
+  highlights: ReadonlyArray<string>;
   icon: IconName;
   image: MediaKey;
   /** Catégorie de réalisations associée (filtre, maillage). */

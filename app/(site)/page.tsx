@@ -1,165 +1,152 @@
-/**
- * PAGE PROVISOIRE — aperçu des fondations (tokens, typographies, composants).
- * Non indexée. Sera remplacée par la page Accueil après validation.
- */
 import type { Metadata } from "next";
+import { HomeHero } from "@/components/sections/HomeHero";
+import { EditorialSplit } from "@/components/sections/EditorialSplit";
+import { ServiceCards } from "@/components/sections/ServiceCards";
+import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import { ProjectShowcase } from "@/components/sections/ProjectShowcase";
+import { CtaBand } from "@/components/sections/CtaBand";
 import { Section } from "@/components/ui/Section";
 import { Accent, SectionHeading } from "@/components/ui/SectionHeading";
-import { ArrowLink, Button, ButtonLink } from "@/components/ui/Button";
-import { Icon, type IconName } from "@/components/ui/Icon";
-import { Photo } from "@/components/ui/Photo";
-import { quoteCta } from "@/config/navigation";
+import { ArrowLink } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
+import { href } from "@/config/routes";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Aperçu des fondations",
-  description: "Page provisoire de validation du système de design ART RÉNOV 56.",
+  title: "ART RÉNOV 56 – Rénovation et aménagement intérieur à Elven",
+  absoluteTitle: true,
+  description:
+    "ART RÉNOV 56, entreprise de rénovation intérieure et d’aménagement à Elven : salle de bain & PMR, cuisine, VMI, revêtements et finitions dans le Morbihan.",
   path: "/",
-  noindex: true,
 });
 
-const palette = [
-  { name: "Noir", className: "bg-noir", hex: "#0B0B0A" },
-  { name: "Anthracite", className: "bg-anthracite", hex: "#1C1B19" },
-  { name: "Ivoire", className: "bg-ivoire border border-ivoire-300", hex: "#F5F0E6" },
-  { name: "Ivoire 200", className: "bg-ivoire-200", hex: "#ECE4D5" },
-  { name: "Or", className: "bg-or", hex: "#B8955A" },
-  { name: "Or foncé (texte sur ivoire)", className: "bg-or-fonce", hex: "#7F6130" },
+const strengths = [
+  { title: "Proximité", text: "Une entreprise locale, basée à Elven, qui intervient dans le Morbihan." },
+  { title: "Accompagnement", text: "Un interlocuteur unique, de l’étude de votre projet à la fin du chantier." },
+  { title: "Travail soigné", text: "Préparation, exécution et finitions réalisées avec exigence." },
+  { title: "Sur mesure", text: "Chaque projet est pensé pour votre logement et votre façon de vivre." },
 ];
 
-const iconNames: IconName[] = [
-  "conversation",
-  "ruler",
-  "diamond",
-  "clock",
-  "home",
-  "bath",
-  "wind",
-  "kitchen",
-  "layers",
-  "user",
-  "trowel",
-  "smile",
-  "shield",
-  "paintRoller",
-  "droplet",
-  "sparkle",
-  "calendar",
-  "phone",
-  "mail",
-  "mapPin",
+const commitments = [
+  {
+    icon: "conversation" as const,
+    title: "Écoute & conseil",
+    text: "Nous prenons le temps de comprendre vos besoins, vos contraintes et vos envies avant de proposer une solution.",
+  },
+  {
+    icon: "ruler" as const,
+    title: "Sur-mesure",
+    text: "Chaque intérieur est différent : les solutions sont adaptées à votre logement, à vos usages et à votre budget.",
+  },
+  {
+    icon: "diamond" as const,
+    title: "Qualité & soin",
+    text: "Préparation des supports, propreté du chantier, finitions : nous attachons de l’importance à chaque détail.",
+  },
+  {
+    icon: "clock" as const,
+    title: "Respect des délais",
+    text: "Un planning clair, établi avec vous avant le démarrage, et un suivi régulier de l’avancement des travaux.",
+  },
 ];
 
-export default function FoundationsPreviewPage() {
+export default function HomePage() {
   return (
     <>
-      <Section tone="dark" labelledBy="apercu-titre">
+      <HomeHero />
+
+      {/* Introduction */}
+      <Section tone="light" labelledBy="intro-titre">
+        <EditorialSplit media="homeIntro">
+          <SectionHeading
+            id="intro-titre"
+            eyebrow="L’entreprise"
+            title={
+              <>
+                Un artisan de proximité pour <Accent>votre intérieur</Accent>
+              </>
+            }
+          />
+          <div className="mt-8 space-y-5 text-[1.0625rem] leading-relaxed text-muted">
+            <p>
+              ART RÉNOV 56 est une entreprise de rénovation intérieure et d’aménagement installée à Elven. Nous accompagnons
+              les particuliers qui souhaitent moderniser, adapter ou embellir leur logement dans le Morbihan.
+            </p>
+            <p>
+              Salle de bain, cuisine, sols, murs, ventilation : chaque projet commence par une écoute attentive et se termine
+              par des finitions soignées.
+            </p>
+          </div>
+          <ul className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            {strengths.map((item) => (
+              <li key={item.title} className="border-t border-line pt-5">
+                <h3 className="flex items-center gap-3 text-[0.8125rem] font-semibold uppercase tracking-[0.16em]">
+                  <Icon name="check" className="h-4 w-4 text-or" />
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">{item.text}</p>
+              </li>
+            ))}
+          </ul>
+          <ArrowLink href={href("about")} className="mt-10">
+            En savoir plus sur ART RÉNOV 56
+          </ArrowLink>
+        </EditorialSplit>
+      </Section>
+
+      {/* Prestations */}
+      <Section tone="dark" labelledBy="prestations-titre">
         <SectionHeading
-          as="h1"
-          id="apercu-titre"
-          size="xl"
-          eyebrow="Fondations • aperçu provisoire"
+          id="prestations-titre"
+          align="center"
+          eyebrow="Ce que nous réalisons"
+          title="Nos prestations"
+          intro="Cinq savoir-faire complémentaires pour rénover et aménager votre intérieur."
+        />
+        <div className="mt-14 lg:mt-20">
+          <ServiceCards />
+        </div>
+        <div className="mt-12 flex justify-center">
+          <ArrowLink href={href("services")}>Toutes nos prestations</ArrowLink>
+        </div>
+      </Section>
+
+      {/* Pourquoi nous choisir */}
+      <Section tone="light" labelledBy="engagements-titre">
+        <SectionHeading
+          id="engagements-titre"
+          align="center"
+          eyebrow="Pourquoi nous choisir"
           title={
             <>
-              Rénovation intérieure,
-              <br />
-              <Accent>l&apos;exigence</Accent> du détail.
+              Nos <Accent>engagements</Accent>
             </>
           }
-          intro="Page temporaire de validation de la direction artistique : typographies, palette, boutons, icônes et emplacements photo. Elle sera remplacée par la page Accueil."
         />
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-          <ButtonLink href={quoteCta.href} variant="gold" size="lg">
-            {quoteCta.long}
-          </ButtonLink>
-          <ButtonLink href="/realisations" variant="outline" size="lg">
-            Découvrir nos réalisations
-          </ButtonLink>
-        </div>
+        <FeatureGrid items={commitments} columns={4} className="mt-14 lg:mt-20" />
       </Section>
 
-      <Section tone="light" labelledBy="typo-titre">
-        <div className="grid gap-16 lg:grid-cols-2">
-          <div>
-            <SectionHeading
-              id="typo-titre"
-              eyebrow="Typographies"
-              title={
-                <>
-                  Une serif éditoriale, <Accent>une sans</Accent> moderne.
-                </>
-              }
-              intro="Cormorant Garamond pour les grands titres, Figtree pour les textes, menus et petits éléments."
-            />
-            <div className="mt-10 space-y-4 border-t border-line pt-8">
-              <p className="font-serif text-display-md">Titre de section — display-md</p>
-              <p className="font-serif text-display-sm">Titre de carte — display-sm</p>
-              <p className="max-w-prose text-[1rem] leading-relaxed">
-                Texte courant : ART RÉNOV 56 accompagne votre projet de rénovation intérieure, de l&apos;écoute de vos
-                besoins jusqu&apos;aux finitions.
-              </p>
-              <p className="text-[0.9375rem] text-muted">Texte secondaire (muted), contraste AA.</p>
-              <ArrowLink href="/prestations">Découvrir</ArrowLink>
-            </div>
-          </div>
-          <div>
-            <p className="eyebrow">Boutons sur fond clair</p>
-            <div className="mt-6 flex flex-col items-start gap-4">
-              <Button variant="gold" icon="arrowRight">
-                Demander un devis gratuit
-              </Button>
-              <Button variant="dark" icon="arrowRight">
-                Retour à l&apos;accueil
-              </Button>
-              <Button variant="outline" icon="arrowRight">
-                Voir toutes nos réalisations
-              </Button>
-            </div>
-            <p className="eyebrow mt-12">Palette</p>
-            <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
-              {palette.map((color) => (
-                <li key={color.name}>
-                  <span className={`block aspect-[4/3] ${color.className}`} />
-                  <span className="mt-2 block text-[0.8125rem] font-semibold">{color.name}</span>
-                  <span className="block text-[0.75rem] text-muted">{color.hex}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Section>
+      {/* Réalisations */}
+      <ProjectShowcase
+        tone="light-alt"
+        title={
+          <>
+            Des intérieurs <Accent>transformés</Accent>
+          </>
+        }
+        intro="Un aperçu des projets de rénovation et d’aménagement réalisés par ART RÉNOV 56."
+        limit={4}
+      />
 
-      <Section tone="dark" labelledBy="icones-titre">
-        <SectionHeading
-          id="icones-titre"
-          align="center"
-          eyebrow="Icônes dorées"
-          title="Jeu d'icônes maison"
-          intro="Tracé fin, sans bibliothèque externe."
-        />
-        <ul className="mx-auto mt-14 grid max-w-4xl grid-cols-3 gap-px bg-line sm:grid-cols-5">
-          {iconNames.map((name) => (
-            <li key={name} className="flex flex-col items-center gap-3 bg-noir px-2 py-7">
-              <Icon name={name} className="h-8 w-8 text-or" />
-              <span className="text-[0.6875rem] tracking-[0.08em] text-muted">{name}</span>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section tone="light-alt" labelledBy="photos-titre">
-        <SectionHeading
-          id="photos-titre"
-          eyebrow="Emplacements photo"
-          title="Cadres au ratio fixe, sans décalage"
-          intro="Chaque emplacement est déclaré dans data/media.ts. Tant qu'aucun fichier n'est renseigné, un placeholder sobre s'affiche."
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <Photo media="serviceKitchen" sizes="(min-width: 768px) 33vw, 100vw" frameClassName="aspect-[4/5]" />
-          <Photo media="serviceBathroom" sizes="(min-width: 768px) 33vw, 100vw" frameClassName="aspect-[4/5]" />
-          <Photo media="aboutTeam" sizes="(min-width: 768px) 33vw, 100vw" frameClassName="aspect-[4/5]" />
-        </div>
-      </Section>
+      <CtaBand
+        tone="dark"
+        title={
+          <>
+            Un projet de <Accent>rénovation</Accent> ?
+          </>
+        }
+        text="Parlez-nous de votre projet : nous vous proposons un devis gratuit et sans engagement."
+      />
     </>
   );
 }

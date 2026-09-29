@@ -9,15 +9,17 @@ import type { SiteRoute } from "@/types";
  * et les réalisations réelles (jamais les projets d'illustration).
  */
 export default function sitemap(): MetadataRoute.Sitemap {
+  // Réalisations : indexable seulement lorsqu'au moins une réalisation réelle est publiée.
+  const hasProjects = getPublishedProjects().length > 0;
   const pages = (Object.values(routes) as SiteRoute[])
-    .filter((route) => route.ready)
+    .filter((route) => route.ready && (route.path !== routes.projects.path || hasProjects))
     .map((route) => ({
       url: absoluteUrl(route.path),
       changeFrequency: route.sitemap?.changeFrequency,
       priority: route.sitemap?.priority,
     }));
 
-  const projectPages = routes.projects.ready
+  const projectPages = hasProjects
     ? getPublishedProjects().map((project) => ({
         url: absoluteUrl(`${routes.projects.path}/${project.slug}`),
         changeFrequency: "yearly" as const,
