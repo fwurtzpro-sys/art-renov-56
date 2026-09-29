@@ -19,9 +19,9 @@ interface PhotoProps {
 
 const overlays = {
   none: "",
-  soft: "bg-noir/30",
-  strong: "bg-noir/60",
-  left: "bg-gradient-to-r from-noir/85 via-noir/55 to-noir/10",
+  soft: "bg-marine/30",
+  strong: "bg-marine/60",
+  left: "bg-gradient-to-r from-marine/85 via-marine/55 to-marine/10",
 } as const;
 
 /**
@@ -41,7 +41,7 @@ export function Photo({
   const asset = getMedia(media);
 
   return (
-    <div className={cn("relative overflow-hidden bg-anthracite", frameClassName, className)}>
+    <div className={cn("relative overflow-hidden bg-marine-panel", frameClassName, className)}>
       {asset.src ? (
         <Image
           src={asset.src}
@@ -67,14 +67,14 @@ function PhotoPlaceholder({ alt }: { alt: string }) {
     <div
       role="img"
       aria-label={alt}
-      className="absolute inset-0 flex items-end bg-anthracite text-ivoire/50"
+      className="absolute inset-0 flex items-end bg-marine-panel text-ivoire/50"
       style={{
         /* Trame architecturale légère */
         backgroundImage:
           "repeating-linear-gradient(0deg, rgb(184 149 90 / 0.1) 0 1px, transparent 1px 48px), repeating-linear-gradient(90deg, rgb(184 149 90 / 0.1) 0 1px, transparent 1px 48px)",
       }}
     >
-      <span className="relative m-4 border border-or/30 bg-noir/60 px-3 py-2 text-[0.625rem] font-semibold uppercase tracking-[0.2em]">
+      <span className="relative m-4 border border-or/30 bg-marine/60 px-3 py-2 text-[0.625rem] font-semibold uppercase tracking-[0.2em]">
         Photo à venir
       </span>
     </div>

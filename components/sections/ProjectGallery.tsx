@@ -34,7 +34,7 @@ export function ProjectGallery({ projects, categories }: ProjectGalleryProps) {
               onClick={() => setParam(filter.id)}
               className={cn(
                 "min-h-[44px] border px-4 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] transition-colors sm:px-5",
-                selected ? "border-noir bg-noir text-ivoire" : "border-line text-encre/80 hover:border-or hover:text-encre",
+                selected ? "border-marine bg-marine text-ivoire" : "border-line text-encre/80 hover:border-or hover:text-encre",
               )}
             >
               {filter.label}

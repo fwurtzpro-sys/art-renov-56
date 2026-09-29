@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { palette } from "@/config/theme";
 
 /** Icône iOS provisoire (monogramme) — à remplacer par le logo définitif. */
 export const size = { width: 180, height: 180 };
@@ -18,13 +19,13 @@ export default async function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0B0B0A",
+          background: palette.marine,
           fontFamily: "Cormorant",
           fontSize: 76,
-          color: "#F5F0E6",
+          color: palette.ivoire,
         }}
       >
-        A<span style={{ color: "#B8955A" }}>56</span>
+        A<span style={{ color: palette.or }}>56</span>
       </div>
     ),
     { ...size, fonts: [{ name: "Cormorant", data: serif, weight: 500, style: "normal" }] },

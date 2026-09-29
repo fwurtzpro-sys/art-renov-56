@@ -27,14 +27,14 @@ export function BeforeAfter({ before, after, ratioClass = "aspect-[16/10]", clas
         <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
           <Photo media={before} sizes="(min-width: 1024px) 66vw, 100vw" frameClassName="h-full w-full" className="absolute inset-0" />
         </div>
-        <span className="pointer-events-none absolute left-4 top-4 bg-noir/80 px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-ivoire">
+        <span className="pointer-events-none absolute left-4 top-4 bg-marine/80 px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-ivoire">
           Avant
         </span>
-        <span className="pointer-events-none absolute right-4 top-4 bg-or px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-noir">
+        <span className="pointer-events-none absolute right-4 top-4 bg-or px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-marine">
           Après
         </span>
         <div aria-hidden className="pointer-events-none absolute inset-y-0 w-px bg-or" style={{ left: `${position}%` }}>
-          <span className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-or bg-noir text-or">
+          <span className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-or bg-marine text-or">
             ⟷
           </span>
         </div>

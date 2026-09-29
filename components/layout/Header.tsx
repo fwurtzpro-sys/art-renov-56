@@ -8,7 +8,7 @@ import { mainNav, quoteCta } from "@/config/navigation";
 import { getEmail, getPhone } from "@/config/site";
 
 /**
- * Header global noir.
+ * Header global marine.
  * Desktop (≥ 1280 px) : logo · navigation · CTA devis · téléphone.
  * Mobile / tablette : logo · CTA devis simplifié · bouton menu.
  */
@@ -17,7 +17,7 @@ export function Header() {
   const email = getEmail();
 
   return (
-    <header className="tone-dark sticky top-0 z-50 border-b border-line bg-noir text-ivoire">
+    <header className="tone-dark sticky top-0 z-50 border-b border-line bg-marine text-ivoire">
       <Container size="wide" className="flex h-header items-center justify-between gap-4 xl:h-header-xl xl:gap-6">
         <Logo />
 
@@ -29,10 +29,10 @@ export function Header() {
             href={quoteCta.href}
             className="group hidden shrink-0 flex-col items-center whitespace-nowrap border border-or px-5 py-3 wide:py-2.5 text-center transition-colors duration-300 hover:bg-or xl:flex"
           >
-            <span className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-or transition-colors group-hover:text-noir">
+            <span className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-or transition-colors group-hover:text-marine">
               {quoteCta.label}
             </span>
-            <span className="mt-1 hidden text-[0.5625rem] font-medium uppercase tracking-[0.12em] text-ivoire/70 transition-colors group-hover:text-noir wide:block">
+            <span className="mt-1 hidden text-[0.5625rem] font-medium uppercase tracking-[0.12em] text-ivoire/70 transition-colors group-hover:text-marine wide:block">
               {quoteCta.sublabel}
             </span>
           </Link>
@@ -40,7 +40,7 @@ export function Header() {
           {/* CTA mobile / tablette simplifié */}
           <Link
             href={quoteCta.href}
-            className="inline-flex min-h-[44px] shrink-0 items-center border border-or px-3 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-or transition-colors hover:bg-or hover:text-noir sm:px-5 xl:hidden"
+            className="inline-flex min-h-[44px] shrink-0 items-center border border-or px-3 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-or transition-colors hover:bg-or hover:text-marine sm:px-5 xl:hidden"
           >
             Devis<span className="hidden sm:inline">&nbsp;gratuit</span>
           </Link>

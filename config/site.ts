@@ -36,7 +36,7 @@ export const siteConfig = {
     tagline: "Rénovation • Aménagement",
     /** Chemin du logo (ex. "/brand/logo-art-renov-56.svg"). Vide = logotype typographique. */
     logo: "",
-    /** Version claire pour fond noir si différente. */
+    /** Version claire pour fond marine si différente. */
     logoOnDark: "",
     shortDescription:
       "Entreprise de rénovation intérieure et d'aménagement basée à Elven, intervenant dans le Morbihan.",

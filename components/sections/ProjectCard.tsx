@@ -31,7 +31,7 @@ export function ProjectCard({
       <article data-nosnippet className="flex h-full flex-col">
         <div className="relative">
           <Photo media={project.cover} sizes={sizes} frameClassName={ratioClass} />
-          <span className="absolute left-4 top-4 bg-noir/80 px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-or">
+          <span className="absolute left-4 top-4 bg-marine/80 px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-or">
             Projet exemple
           </span>
         </div>
@@ -58,7 +58,7 @@ export function ProjectCard({
       </Heading>
       <Icon
         name="arrowUpRight"
-        className="absolute right-4 top-4 h-9 w-9 bg-noir/70 p-2 text-or opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100"
+        className="absolute right-4 top-4 h-9 w-9 bg-marine/70 p-2 text-or opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100"
       />
     </article>
   );

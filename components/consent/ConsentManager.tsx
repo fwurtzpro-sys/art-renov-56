@@ -61,7 +61,7 @@ export function ConsentManager({ categories, cookiesHref }: { categories: Readon
       aria-modal={panelOpen ? "true" : undefined}
       aria-labelledby={titleId}
       className={cn(
-        "tone-dark fixed z-[70] border border-line bg-noir text-ivoire shadow-[0_0_0_1px_rgba(0,0,0,0.2)]",
+        "tone-dark fixed z-[70] border border-line bg-marine text-ivoire shadow-[0_0_0_1px_rgba(0,0,0,0.2)]",
         panelOpen ? "inset-x-3 bottom-3 max-h-[85vh] overflow-y-auto sm:inset-x-auto sm:right-6 sm:w-[32rem]" : "inset-x-3 bottom-3 sm:inset-x-auto sm:right-6 sm:w-[32rem]",
       )}
     >
@@ -104,7 +104,7 @@ export function ConsentManager({ categories, cookiesHref }: { categories: Readon
                     type="checkbox"
                     checked={draft[category.id] ?? consent?.choices[category.id] ?? false}
                     onChange={(event) => setDraft((current) => ({ ...current, [category.id]: event.target.checked }))}
-                    className="mt-1 h-5 w-5 shrink-0 accent-[#B8955A]"
+                    className="mt-1 h-5 w-5 shrink-0 accent-or"
                   />
                 </li>
               ))}

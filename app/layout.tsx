@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Figtree } from "next/font/google";
 import type { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
+import { palette } from "@/config/theme";
 
 /* Typographies auto-hébergées par next/font (aucune requête vers Google côté visiteur). */
 const serif = Cormorant_Garamond({
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0B0A",
+  themeColor: palette.marine,
   colorScheme: "light",
 };
 

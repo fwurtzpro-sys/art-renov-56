@@ -98,7 +98,7 @@ export function MobileMenu({ items, cta, phone, email }: MobileMenuProps) {
           aria-modal="true"
           aria-label="Menu"
           onKeyDown={onKeyDown}
-          className="tone-dark fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-noir text-ivoire xl:hidden"
+          className="tone-dark fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-marine text-ivoire xl:hidden"
         >
           <div className="flex h-header shrink-0 items-center justify-between border-b border-line px-5 sm:px-8">
             <span className="font-serif text-[1.4rem] tracking-[0.04em]">

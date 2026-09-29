@@ -2,13 +2,14 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
 
-export type SectionTone = "dark" | "anthracite" | "light" | "light-alt";
+export type SectionTone = "dark" | "panel" | "light" | "light-alt";
 
+// --tone-bg est lue depuis les tokens Tailwind (config/theme.ts) : aucune couleur en dur ici.
 const toneClasses: Record<SectionTone, string> = {
-  dark: "tone-dark bg-noir text-ivoire [--tone-bg:#0B0B0A]",
-  anthracite: "tone-dark bg-anthracite text-ivoire [--tone-bg:#1C1B19]",
-  light: "tone-light bg-ivoire text-encre [--tone-bg:#F5F0E6]",
-  "light-alt": "tone-light bg-ivoire-50 text-encre [--tone-bg:#FBF8F2]",
+  dark: "tone-dark bg-marine text-ivoire [--tone-bg:theme(colors.marine.DEFAULT)]",
+  panel: "tone-dark bg-marine-panel text-ivoire [--tone-bg:theme(colors.marine.panel)]",
+  light: "tone-light bg-ivoire text-encre [--tone-bg:theme(colors.ivoire.DEFAULT)]",
+  "light-alt": "tone-light bg-ivoire-50 text-encre [--tone-bg:theme(colors.ivoire.50)]",
 };
 
 const spacingClasses = {
@@ -31,7 +32,7 @@ interface SectionProps {
 }
 
 /**
- * Section pleine largeur au fond noir ou ivoire. Définit aussi le « ton »
+ * Section pleine largeur au fond marine ou ivoire. Définit aussi le « ton »
  * (couleurs d'accent, de texte secondaire et de focus adaptées au fond).
  */
 export function Section({

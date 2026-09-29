@@ -42,7 +42,7 @@ export default function ContactPage() {
   const { openingHours, serviceArea } = siteConfig;
 
   return (
-    <div className="tone-dark bg-noir text-ivoire">
+    <div className="tone-dark bg-marine text-ivoire">
       <Container className="pb-section pt-10">
         <Breadcrumb route="contact" />
 
@@ -109,7 +109,7 @@ export default function ContactPage() {
 
           {/* Droite : formulaire */}
           <div className="lg:col-span-7">
-            <section aria-labelledby="formulaire-titre" className="border border-line bg-anthracite p-6 sm:p-10 lg:p-12">
+            <section aria-labelledby="formulaire-titre" className="border border-line bg-marine-panel p-6 sm:p-10 lg:p-12">
               <h2 id="formulaire-titre" className="font-serif text-display-sm font-medium">
                 Votre demande de devis
               </h2>

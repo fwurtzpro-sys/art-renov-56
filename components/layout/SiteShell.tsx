@@ -8,7 +8,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <>
       <a
         href="#contenu"
-        className="sr-only z-[100] bg-or px-5 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-noir focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        className="sr-only z-[100] bg-or px-5 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-marine focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
       >
         Aller au contenu
       </a>

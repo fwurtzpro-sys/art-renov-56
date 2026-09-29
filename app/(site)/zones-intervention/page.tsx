@@ -96,7 +96,7 @@ export default function AreasPage() {
         />
         <ul className="mt-14 grid gap-px border-y border-line bg-line sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
           {sectors.map((sector) => (
-            <li key={sector.name} className="bg-noir px-6 py-10 sm:px-8">
+            <li key={sector.name} className="bg-marine px-6 py-10 sm:px-8">
               <Icon name="mapPin" className="h-6 w-6 text-or" />
               <h3 className="mt-6 font-serif text-display-sm font-medium">{sector.name}</h3>
               <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">{sector.text}</p>

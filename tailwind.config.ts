@@ -1,14 +1,13 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
+import { palette, tones } from "./config/theme";
 
 /**
- * Design tokens ART RÉNOV 56 — noir / ivoire dominants, doré en accent.
+ * Design tokens ART RÉNOV 56 — bleu marine / ivoire dominants, doré en accent.
+ * Les valeurs viennent de config/theme.ts (source unique).
  *
  * Couleurs « tonales » (accent, muted, line, fg) : elles s'adaptent au fond
- * grâce aux classes `.tone-dark` / `.tone-light` (voir app/globals.css).
- * Contrastes vérifiés (WCAG AA) :
- *  - or #B8955A sur noir #0B0B0A ≈ 7:1
- *  - or foncé #7F6130 sur ivoire #F5F0E6 ≈ 5:1 (petits textes dorés sur fond clair)
- *  - muted #57534B sur ivoire ≈ 6.8:1 ; muted #A8A29A sur noir ≈ 7.8:1
+ * grâce aux classes `.tone-dark` / `.tone-light` (variables injectées par le plugin ci-dessous).
  */
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./config/**/*.ts", "./data/**/*.ts"],
@@ -22,26 +21,23 @@ const config: Config = {
     },
     extend: {
       colors: {
-        noir: {
-          DEFAULT: "#0B0B0A",
-          soft: "#131312",
-        },
-        anthracite: {
-          DEFAULT: "#1C1B19",
-          light: "#262522",
+        marine: {
+          DEFAULT: palette.marine,
+          panel: palette.marinePanel,
+          raised: palette.marineRaised,
         },
         ivoire: {
-          DEFAULT: "#F5F0E6",
-          50: "#FBF8F2",
-          200: "#ECE4D5",
-          300: "#DDD2BE",
+          DEFAULT: palette.ivoire,
+          50: palette.ivoire50,
+          200: palette.ivoire200,
+          300: palette.ivoire300,
         },
         or: {
-          DEFAULT: "#B8955A",
-          clair: "#CFB07A",
-          fonce: "#7F6130",
+          DEFAULT: palette.or,
+          clair: palette.orClair,
+          fonce: palette.orFonce,
         },
-        encre: "#11100F",
+        encre: palette.encre,
         accent: "rgb(var(--tone-accent) / <alpha-value>)",
         muted: "rgb(var(--tone-muted) / <alpha-value>)",
         line: "rgb(var(--tone-line) / <alpha-value>)",
@@ -85,7 +81,15 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // Variables de ton (clair par défaut, sombre sous .tone-dark), générées depuis config/theme.ts
+    plugin(({ addBase }) => {
+      addBase({
+        ":root, .tone-light": tones.light,
+        ".tone-dark": tones.dark,
+      });
+    }),
+  ],
 };
 
 export default config;

@@ -45,7 +45,7 @@ export function Footer() {
   const { brand, credits, serviceArea } = siteConfig;
 
   return (
-    <footer className="tone-dark border-t border-line bg-noir text-ivoire">
+    <footer className="tone-dark border-t border-line bg-marine text-ivoire">
       <Container className="py-16 lg:py-24">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.1fr_1.3fr] lg:gap-10">
           {/* 1 — Identité */}

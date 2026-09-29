@@ -55,7 +55,7 @@ export function LegalLayout({ route, eyebrow = "Informations légales", title, i
                 ))}
               </ol>
             </nav>
-            <div className="tone-dark mt-6 hidden bg-noir p-7 text-ivoire lg:block">
+            <div className="tone-dark mt-6 hidden bg-marine p-7 text-ivoire lg:block">
               <QuestionCard />
             </div>
           </aside>
@@ -71,7 +71,7 @@ export function LegalLayout({ route, eyebrow = "Informations légales", title, i
             </p>
             {intro ? <div className="mt-8 max-w-prose text-lead text-muted">{intro}</div> : null}
             <div className="mt-12 max-w-3xl space-y-14">{children}</div>
-            <div className="tone-dark mt-16 bg-noir p-7 text-ivoire lg:hidden">
+            <div className="tone-dark mt-16 bg-marine p-7 text-ivoire lg:hidden">
               <QuestionCard />
             </div>
           </article>

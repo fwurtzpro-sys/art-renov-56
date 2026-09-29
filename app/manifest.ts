@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
+import { palette } from "@/config/theme";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -8,8 +9,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: siteConfig.brand.shortDescription,
     start_url: "/",
     display: "browser",
-    background_color: "#0B0B0A",
-    theme_color: "#0B0B0A",
+    background_color: palette.marine,
+    theme_color: palette.marine,
     lang: "fr",
     icons: [
       { src: "/icon.svg", type: "image/svg+xml", sizes: "any" },

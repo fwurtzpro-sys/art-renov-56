@@ -128,7 +128,7 @@ function NavDropdown({ item, active, pathname }: { item: NavItem; active: boolea
         ref={panelRef}
         id={panelId}
         hidden={!open}
-        className="tone-dark absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 border border-line border-t-or bg-noir py-3"
+        className="tone-dark absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 border border-line border-t-or bg-marine py-3"
       >
         {item.children?.map((child) => {
           const current = pathname === child.href;
@@ -139,7 +139,7 @@ function NavDropdown({ item, active, pathname }: { item: NavItem; active: boolea
                 aria-current={current ? "page" : undefined}
                 onClick={hide}
                 className={cn(
-                  "group flex items-center justify-between gap-4 px-6 py-3 text-[0.875rem] text-ivoire/80 transition-colors hover:bg-anthracite hover:text-ivoire",
+                  "group flex items-center justify-between gap-4 px-6 py-3 text-[0.875rem] text-ivoire/80 transition-colors hover:bg-marine-panel hover:text-ivoire",
                   current && "text-or",
                 )}
               >

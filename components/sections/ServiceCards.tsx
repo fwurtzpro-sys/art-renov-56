@@ -16,7 +16,7 @@ export function ServiceCards() {
         const wide = index >= 3;
         return (
           <li key={service.slug} className={cn(wide ? "lg:col-span-3" : "lg:col-span-2", index === 4 && "md:col-span-2 lg:col-span-3")}>
-            <article className="group relative flex h-full flex-col border border-line bg-anthracite transition-colors duration-500 focus-within:border-or hover:border-or/60">
+            <article className="group relative flex h-full flex-col border border-line bg-marine-panel transition-colors duration-500 focus-within:border-or hover:border-or/60">
               <Photo
                 media={service.image}
                 sizes={wide ? "(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"}

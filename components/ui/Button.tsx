@@ -10,14 +10,14 @@ const base =
   "group inline-flex items-center justify-center gap-3 text-center font-sans font-semibold uppercase tracking-[0.14em] transition-colors duration-300 ease-premium disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<ButtonVariant, string> = {
-  /* Bouton principal : fond doré, texte noir (contraste ≈ 7:1) */
-  gold: "bg-or text-noir hover:bg-or-clair",
-  /* Contour : doré sur fond noir, bronze sur fond ivoire */
-  outline: "border border-accent text-fg hover:border-or hover:bg-or hover:text-noir",
-  /* Noir avec détail doré (fonds clairs) */
-  dark: "bg-noir text-ivoire hover:bg-anthracite-light [&_svg]:text-or",
-  /* Ivoire (fonds noirs, usage secondaire) */
-  light: "bg-ivoire text-noir hover:bg-ivoire-200",
+  /* Bouton principal : fond doré, texte marine (contraste ≈ 5,8:1) */
+  gold: "bg-or text-marine hover:bg-or-clair",
+  /* Contour : doré sur fond marine, bronze sur fond ivoire */
+  outline: "border border-accent text-fg hover:border-or hover:bg-or hover:text-marine",
+  /* Marine avec détail doré (fonds clairs) */
+  dark: "bg-marine text-ivoire hover:bg-marine-raised [&_svg]:text-or",
+  /* Ivoire (fonds marine, usage secondaire) */
+  light: "bg-ivoire text-marine hover:bg-ivoire-200",
 };
 
 const sizes: Record<ButtonSize, string> = {

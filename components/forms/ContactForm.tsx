@@ -232,7 +232,7 @@ export function ContactForm({ privacyHref }: { privacyHref: string }) {
           {files.length > 0 ? (
             <ul className="mt-3 space-y-2">
               {files.map((file, index) => (
-                <li key={`${file.name}-${index}`} className="flex items-center justify-between gap-4 bg-noir/40 px-4 py-2 text-[0.875rem]">
+                <li key={`${file.name}-${index}`} className="flex items-center justify-between gap-4 bg-marine/40 px-4 py-2 text-[0.875rem]">
                   <span className="truncate">{file.name}</span>
                   <button
                     type="button"
@@ -265,7 +265,7 @@ export function ContactForm({ privacyHref }: { privacyHref: string }) {
             required
             aria-invalid={errors.consent ? true : undefined}
             aria-describedby={errors.consent ? "erreur-consent" : undefined}
-            className="mt-0.5 h-5 w-5 shrink-0 accent-[#B8955A]"
+            className="mt-0.5 h-5 w-5 shrink-0 accent-or"
           />
           <span>
             J’accepte que les informations saisies soient utilisées pour traiter ma demande et être recontacté(e).{" "}
@@ -301,7 +301,7 @@ export function ContactForm({ privacyHref }: { privacyHref: string }) {
 
 function inputClass(invalid: boolean) {
   return cn(
-    "block min-h-[52px] w-full border bg-noir/40 px-4 text-[1rem] text-ivoire placeholder:text-ivoire/35 transition-colors focus:border-or focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2",
+    "block min-h-[52px] w-full border bg-marine/40 px-4 text-[1rem] text-ivoire placeholder:text-ivoire/35 transition-colors focus:border-or focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2",
     invalid ? "border-[#e8a39a]" : "border-line hover:border-ivoire/30",
   );
 }
