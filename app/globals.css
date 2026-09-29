@@ -2,53 +2,114 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------ */
+/* Tons : variables consommées par les couleurs accent / muted / line / fg */
+/* ------------------------------------------------------------------ */
+
 @layer base {
+  :root,
+  .tone-light {
+    --tone-accent: 127 97 48; /* or foncé — lisible sur ivoire */
+    --tone-muted: 87 83 75;
+    --tone-line: 221 210 190;
+    --tone-fg: 17 16 15;
+    --tone-focus: #7f6130;
+  }
+
+  .tone-dark {
+    --tone-accent: 184 149 90; /* or */
+    --tone-muted: 168 162 154;
+    --tone-line: 52 50 46;
+    --tone-fg: 245 240 230;
+    --tone-focus: #cfb07a;
+  }
+
   html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
+    /* Ancres (pages légales) sous le header fixe */
+    scroll-padding-top: 6.5rem;
   }
 
   body {
-    @apply bg-creme text-anthracite antialiased;
+    @apply bg-ivoire font-sans text-encre antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   ::selection {
-    @apply bg-ardoise-900 text-creme;
+    @apply bg-or text-noir;
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-ardoise-700 ring-offset-2 ring-offset-creme;
+    outline: 2px solid var(--tone-focus);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 6.5rem;
   }
 }
 
-/* Alignement de la carte Leaflet (zone d'intervention) sur l'identité du site */
-.leaflet-control-zoom {
-  border: none !important;
-  border-radius: 0.5rem !important;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(15, 30, 48, 0.15) !important;
+@layer components {
+  /* Petit surtitre doré précédé d'un trait */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-sans text-eyebrow font-semibold uppercase text-accent;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply block h-px w-8 bg-or;
+  }
+  .eyebrow-center::after {
+    content: "";
+    @apply block h-px w-8 bg-or;
+  }
+
+  /* Mot mis en valeur dans les grands titres serif */
+  .accent-word {
+    @apply font-serif italic text-or;
+  }
+  .tone-light .accent-word {
+    @apply text-or-fonce;
+  }
+
+  /* Soulignement doré animé pour les liens textuels */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
 }
 
-.leaflet-control-zoom a {
-  color: #0f1e30 !important;
-  border-color: rgba(15, 30, 48, 0.1) !important;
-}
-
-.leaflet-popup-content-wrapper {
-  border-radius: 0.5rem !important;
-  font-family: var(--font-sans), sans-serif;
-}
+/* ------------------------------------------------------------------ */
+/* Mouvement réduit : aucune animation ni transition décorative         */
+/* ------------------------------------------------------------------ */
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }

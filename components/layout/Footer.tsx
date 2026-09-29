@@ -1,111 +1,137 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { company } from "@/data/company";
-import { services } from "@/data/services";
-import { navLinks } from "@/data/zones";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { fadeUp } from "@/animations/variants";
+import { Icon } from "@/components/ui/Icon";
+import { ButtonLink } from "@/components/ui/Button";
+import { Logo } from "@/components/layout/Logo";
+import { footerQuickLinks, footerServiceLinks, legalNav, quoteCta } from "@/config/navigation";
+import { getEmail, getPhone, getPublicLocality, getSocialLinks, isProvided, siteConfig } from "@/config/site";
+import type { NavItem } from "@/types";
+
+function FooterHeading({ children }: { children: string }) {
+  return (
+    <h2 className="flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-or">
+      {children}
+      <span aria-hidden className="h-px w-6 bg-or/60" />
+    </h2>
+  );
+}
+
+function FooterLinks({ title, links }: { title: string; links: ReadonlyArray<NavItem> }) {
+  return (
+    <nav aria-label={title}>
+      <FooterHeading>{title}</FooterHeading>
+      <ul className="mt-6 space-y-1">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              className="inline-flex min-h-[36px] items-center text-[0.9375rem] text-ivoire/75 transition-colors hover:text-ivoire"
+            >
+              <span className="link-underline">{link.label}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
 
 export function Footer() {
+  const phone = getPhone();
+  const email = getEmail();
+  const socials = getSocialLinks();
   const year = new Date().getFullYear();
+  const { brand, credits, serviceArea } = siteConfig;
 
   return (
-    <footer className="relative bg-anthracite text-creme">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-breton-500/50 to-transparent" />
-      <Container className="py-16 md:py-20">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
-          <Reveal variants={fadeUp}>
-            <p className="font-display text-2xl">
-              Art Renov <span className="text-breton-400">56</span>
-            </p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-ardoise-200">
-              {company.tagline}. Un interlocuteur unique pour tous vos travaux
-              de rénovation dans le Morbihan.
-            </p>
-          </Reveal>
+    <footer className="tone-dark border-t border-line bg-noir text-ivoire">
+      <Container className="py-16 lg:py-24">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.1fr_1.3fr] lg:gap-10">
+          {/* 1 — Identité */}
+          <div className="sm:col-span-2 lg:col-span-1 lg:pr-8">
+            <Logo size="lg" />
+            <p className="mt-7 max-w-sm text-[0.9375rem] leading-relaxed text-muted">{brand.shortDescription}</p>
+            {socials.length > 0 ? (
+              <ul className="mt-7 flex gap-3">
+                {socials.map((social) => (
+                  <li key={social.key}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex h-11 w-11 items-center justify-center border border-line text-ivoire/80 transition-colors hover:border-or hover:text-or"
+                    >
+                      <Icon name={social.key} className="h-[1.125rem] w-[1.125rem]" title={`${brand.name} sur ${social.label}`} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
 
-          <Reveal variants={fadeUp} delay={0.05}>
-            <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-breton-400">
-              Navigation
-            </h3>
-            <ul className="mt-5 space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="group inline-flex items-center text-sm text-ardoise-200 transition-colors duration-300 hover:text-creme"
-                  >
-                    <span className="border-b border-transparent transition-colors duration-300 group-hover:border-creme/40">
-                      {link.label}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+          {/* 2 — Liens rapides */}
+          <FooterLinks title="Liens rapides" links={footerQuickLinks} />
 
-          <Reveal variants={fadeUp} delay={0.1}>
-            <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-breton-400">
-              Prestations
-            </h3>
-            <ul className="mt-5 space-y-3">
-              {services.slice(0, 5).map((service) => (
-                <li key={service.slug}>
-                  <Link
-                    href={`/prestations/${service.slug}`}
-                    className="group inline-flex items-center text-sm text-ardoise-200 transition-colors duration-300 hover:text-creme"
-                  >
-                    <span className="border-b border-transparent transition-colors duration-300 group-hover:border-creme/40">
-                      {service.title}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+          {/* 3 — Prestations */}
+          <FooterLinks title="Prestations" links={footerServiceLinks} />
 
-          <Reveal variants={fadeUp} delay={0.15}>
-            <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-breton-400">
-              Contact
-            </h3>
-            <ul className="mt-5 space-y-4 text-sm text-ardoise-200">
-              <li className="flex items-start gap-3">
-                <Phone className="mt-0.5 size-4 shrink-0 text-breton-400" aria-hidden="true" />
-                <a href={`tel:${company.phone}`} className="transition-colors duration-300 hover:text-creme">
-                  {company.phone}
+          {/* 4 — Contact */}
+          <div>
+            <FooterHeading>Contact</FooterHeading>
+            <address className="mt-6 space-y-4 not-italic">
+              {phone ? (
+                <a href={phone.href} className="flex items-center gap-3 text-[0.9375rem] text-ivoire transition-colors hover:text-or">
+                  <Icon name="phone" className="h-[1.125rem] w-[1.125rem] shrink-0 text-or" />
+                  {phone.display}
                 </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <Mail className="mt-0.5 size-4 shrink-0 text-breton-400" aria-hidden="true" />
-                <a href={`mailto:${company.email}`} className="transition-colors duration-300 hover:text-creme">
-                  {company.email}
+              ) : null}
+              {email ? (
+                <a href={email.href} className="flex items-center gap-3 break-all text-[0.9375rem] text-ivoire transition-colors hover:text-or">
+                  <Icon name="mail" className="h-[1.125rem] w-[1.125rem] shrink-0 text-or" />
+                  {email.display}
                 </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-breton-400" aria-hidden="true" />
+              ) : null}
+              <p className="flex items-start gap-3 text-[0.9375rem] text-ivoire/80">
+                <Icon name="mapPin" className="mt-0.5 h-[1.125rem] w-[1.125rem] shrink-0 text-or" />
                 <span>
-                  {company.address}, {company.postalCode} {company.city}
+                  {getPublicLocality()}
+                  <br />
+                  <span className="text-muted">{serviceArea.label}</span>
                 </span>
-              </li>
-            </ul>
-          </Reveal>
-        </div>
-
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-ardoise-800 pt-8 text-xs text-ardoise-400 md:flex-row">
-          <p>
-            © {year} {company.name}. Tous droits réservés.
-          </p>
-          <div className="flex gap-6">
-            <Link href="/mentions-legales" className="transition-colors duration-300 hover:text-creme">
-              Mentions légales
-            </Link>
-            <Link href="/politique-de-confidentialite" className="transition-colors duration-300 hover:text-creme">
-              Politique de confidentialité
-            </Link>
+              </p>
+            </address>
+            <ButtonLink href={quoteCta.href} variant="gold" size="md" className="mt-8">
+              {quoteCta.label}
+            </ButtonLink>
           </div>
         </div>
       </Container>
+
+      <div className="border-t border-line">
+        <Container className="flex flex-col gap-4 py-6 text-[0.8125rem] text-muted lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
+            <p>
+              © {year} {brand.name}. Tous droits réservés.
+            </p>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              {legalNav.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="link-underline transition-colors hover:text-ivoire">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {isProvided(credits.url) ? (
+            <a href={credits.url} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-ivoire">
+              {credits.label}
+            </a>
+          ) : (
+            <p>{credits.label}</p>
+          )}
+        </Container>
+      </div>
     </footer>
   );
 }

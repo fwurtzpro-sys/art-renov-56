@@ -1,65 +1,53 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { Reveal } from "@/components/ui/Reveal";
+
+type HeadingLevel = "h1" | "h2" | "h3";
 
 interface SectionHeadingProps {
   eyebrow?: string;
-  title: string;
-  description?: string;
+  title: ReactNode;
+  intro?: ReactNode;
+  as?: HeadingLevel;
+  id?: string;
   align?: "left" | "center";
-  light?: boolean;
+  size?: "xl" | "lg" | "md" | "sm";
   className?: string;
 }
 
+const sizeClasses = {
+  xl: "text-display-xl",
+  lg: "text-display-lg",
+  md: "text-display-md",
+  sm: "text-display-sm",
+} as const;
+
+/**
+ * Surtitre doré + grand titre serif + introduction courte.
+ * Pour mettre un mot en valeur : <Accent>mot</Accent> dans `title`.
+ */
 export function SectionHeading({
   eyebrow,
   title,
-  description,
+  intro,
+  as: Tag = "h2",
+  id,
   align = "left",
-  light = false,
+  size = "lg",
   className,
 }: SectionHeadingProps) {
+  const centered = align === "center";
   return (
-    <div
-      className={cn(
-        "max-w-2xl",
-        align === "center" && "mx-auto text-center",
-        className
-      )}
-    >
-      {eyebrow && (
-        <Reveal>
-          <p
-            className={cn(
-              "mb-4 text-xs font-medium uppercase tracking-[0.2em]",
-              light ? "text-breton-300" : "text-breton-600"
-            )}
-          >
-            {eyebrow}
-          </p>
-        </Reveal>
-      )}
-      <Reveal delay={0.05}>
-        <h2
-          className={cn(
-            "font-display text-3xl leading-tight tracking-tightest sm:text-4xl md:text-5xl",
-            light ? "text-creme" : "text-anthracite"
-          )}
-        >
-          {title}
-        </h2>
-      </Reveal>
-      {description && (
-        <Reveal delay={0.1}>
-          <p
-            className={cn(
-              "mt-5 text-base leading-relaxed md:text-lg",
-              light ? "text-ardoise-200" : "text-ardoise-700"
-            )}
-          >
-            {description}
-          </p>
-        </Reveal>
-      )}
+    <div className={cn("max-w-3xl", centered && "mx-auto text-center", className)}>
+      {eyebrow ? <p className={cn("eyebrow", centered && "eyebrow-center justify-center")}>{eyebrow}</p> : null}
+      <Tag id={id} className={cn("font-serif font-medium text-fg", sizeClasses[size], eyebrow && "mt-5")}>
+        {title}
+      </Tag>
+      {intro ? <div className={cn("mt-6 text-lead text-muted", centered && "mx-auto max-w-prose")}>{intro}</div> : null}
     </div>
   );
+}
+
+/** Mot doré en italique dans un titre serif. */
+export function Accent({ children }: { children: ReactNode }) {
+  return <span className="accent-word">{children}</span>;
 }

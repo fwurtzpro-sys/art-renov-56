@@ -1,10 +1,16 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { siteConfig } from "@/data/company";
+import { siteConfig } from "@/config/site";
 
+/** Image Open Graph par défaut (partages réseaux sociaux), générée au build. */
+export const alt = `${siteConfig.brand.name} — Rénovation intérieure & aménagement dans le Morbihan`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const serif = await readFile(join(process.cwd(), "assets/fonts/CormorantGaramond-Medium.ttf"));
+
   return new ImageResponse(
     (
       <div
@@ -13,24 +19,32 @@ export default function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px",
-          background: "linear-gradient(135deg, #2b3843 0%, #57748a 100%)",
-          color: "#f8f6f1",
-          fontFamily: "serif",
+          justifyContent: "space-between",
+          background: "#0B0B0A",
+          padding: 72,
+          color: "#F5F0E6",
+          border: "2px solid #B8955A",
+          boxSizing: "border-box",
         }}
       >
-        <div style={{ fontSize: 28, letterSpacing: 4, color: "#d8c6a3", textTransform: "uppercase" }}>
-          Rénovation dans le Morbihan
+        <div style={{ display: "flex", alignItems: "center", gap: 20, color: "#B8955A", fontSize: 22, letterSpacing: 6 }}>
+          <div style={{ width: 56, height: 2, background: "#B8955A" }} />
+          ELVEN • MORBIHAN
         </div>
-        <div style={{ fontSize: 72, marginTop: 24, display: "flex" }}>
-          {siteConfig.name}
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", fontFamily: "Cormorant", fontSize: 112, lineHeight: 1 }}>
+            ART RÉNOV<span style={{ color: "#B8955A", marginLeft: 28 }}>56</span>
+          </div>
+          <div style={{ marginTop: 28, fontSize: 26, letterSpacing: 10, color: "#B8955A" }}>RÉNOVATION • AMÉNAGEMENT</div>
         </div>
-        <div style={{ fontSize: 30, marginTop: 24, maxWidth: 900, color: "#c9d3db", display: "flex" }}>
-          {siteConfig.description}
+        <div style={{ fontFamily: "Cormorant", fontSize: 40, color: "#D8D1C4" }}>
+          Rénovation intérieure, salle de bain, cuisine, VMI, revêtements & finitions.
         </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [{ name: "Cormorant", data: serif, weight: 500, style: "normal" }],
+    },
   );
 }

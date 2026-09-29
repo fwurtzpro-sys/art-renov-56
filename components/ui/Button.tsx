@@ -1,57 +1,111 @@
-"use client";
-
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { Icon, type IconName } from "@/components/ui/Icon";
 
-interface ButtonProps {
-  href: string;
-  children: React.ReactNode;
-  variant?: "primary" | "secondary" | "ghost";
-  className?: string;
-  showArrow?: boolean;
-}
+export type ButtonVariant = "gold" | "outline" | "dark" | "light";
+export type ButtonSize = "md" | "lg" | "sm";
 
-const variantStyles = {
-  primary:
-    "bg-ardoise-900 text-creme shadow-sm shadow-ardoise-900/20 hover:bg-ardoise-800 hover:shadow-md hover:shadow-ardoise-900/25 focus-visible:ring-breton-500",
-  secondary:
-    "bg-transparent text-ardoise-900 border border-ardoise-900/25 hover:border-ardoise-900 hover:bg-ardoise-900/5 focus-visible:ring-breton-500",
-  ghost:
-    "bg-transparent text-creme border border-creme/40 hover:border-creme hover:bg-creme/10 focus-visible:ring-creme",
+const base =
+  "group inline-flex items-center justify-center gap-3 text-center font-sans font-semibold uppercase tracking-[0.14em] transition-colors duration-300 ease-premium disabled:pointer-events-none disabled:opacity-50";
+
+const variants: Record<ButtonVariant, string> = {
+  /* Bouton principal : fond doré, texte noir (contraste ≈ 7:1) */
+  gold: "bg-or text-noir hover:bg-or-clair",
+  /* Contour : doré sur fond noir, bronze sur fond ivoire */
+  outline: "border border-accent text-fg hover:border-or hover:bg-or hover:text-noir",
+  /* Noir avec détail doré (fonds clairs) */
+  dark: "bg-noir text-ivoire hover:bg-anthracite-light [&_svg]:text-or",
+  /* Ivoire (fonds noirs, usage secondaire) */
+  light: "bg-ivoire text-noir hover:bg-ivoire-200",
 };
 
-const MotionLink = motion.create(Link);
+const sizes: Record<ButtonSize, string> = {
+  sm: "min-h-[44px] px-5 text-[0.6875rem]",
+  md: "min-h-[52px] px-7 text-[0.75rem]",
+  lg: "min-h-[58px] px-9 text-[0.8125rem]",
+};
+
+interface StyleProps {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  /** Icône à droite (flèche par défaut ; `null` pour aucune). */
+  icon?: IconName | null;
+  fullWidth?: boolean;
+}
+
+export function buttonClasses({ variant = "gold", size = "md", fullWidth }: StyleProps = {}) {
+  return cn(base, variants[variant], sizes[size], fullWidth && "w-full");
+}
+
+function ButtonContent({ children, icon }: { children: ReactNode; icon: IconName | null }) {
+  return (
+    <>
+      <span>{children}</span>
+      {icon ? (
+        <Icon
+          name={icon}
+          className="h-4 w-4 shrink-0 transition-transform duration-300 ease-premium group-hover:translate-x-1"
+        />
+      ) : null}
+    </>
+  );
+}
+
+type ButtonLinkProps = StyleProps & Omit<ComponentPropsWithoutRef<typeof Link>, "className"> & { className?: string };
+
+/** Lien stylé en bouton (navigation interne ou tel:/mailto:). */
+export function ButtonLink({
+  variant,
+  size,
+  icon = "arrowRight",
+  fullWidth,
+  className,
+  children,
+  ...props
+}: ButtonLinkProps) {
+  return (
+    <Link className={cn(buttonClasses({ variant, size, fullWidth }), className)} {...props}>
+      <ButtonContent icon={icon}>{children}</ButtonContent>
+    </Link>
+  );
+}
+
+type ButtonProps = StyleProps & ComponentPropsWithoutRef<"button">;
 
 export function Button({
-  href,
-  children,
-  variant = "primary",
+  variant,
+  size,
+  icon = null,
+  fullWidth,
   className,
-  showArrow = true,
+  children,
+  type = "button",
+  ...props
 }: ButtonProps) {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <MotionLink
-      href={href}
-      whileHover={prefersReducedMotion ? undefined : { scale: 1.02, y: -1 }}
-      whileTap={prefersReducedMotion ? undefined : { scale: 0.98, y: 0 }}
-      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+    <button type={type} className={cn(buttonClasses({ variant, size, fullWidth }), className)} {...props}>
+      <ButtonContent icon={icon}>{children}</ButtonContent>
+    </button>
+  );
+}
+
+/** Lien texte « Découvrir → » avec trait doré. */
+export function ArrowLink({
+  children,
+  className,
+  ...props
+}: Omit<ComponentPropsWithoutRef<typeof Link>, "className"> & { className?: string }) {
+  return (
+    <Link
       className={cn(
-        "group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-[background-color,border-color,box-shadow] duration-300 ease-premium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-        variantStyles[variant],
-        className
+        "group inline-flex items-center gap-3 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-fg transition-colors hover:text-accent",
+        className,
       )}
+      {...props}
     >
-      {children}
-      {showArrow && (
-        <ArrowUpRight
-          className="size-4 transition-transform duration-300 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          aria-hidden="true"
-        />
-      )}
-    </MotionLink>
+      <span className="link-underline pb-1">{children}</span>
+      <Icon name="arrowRight" className="h-4 w-4 text-or transition-transform duration-300 ease-premium group-hover:translate-x-1" />
+    </Link>
   );
 }

@@ -1,15 +1,24 @@
+import type { ElementType, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-export function Container({
-  className,
-  children,
-}: {
+interface ContainerProps {
+  children: ReactNode;
   className?: string;
-  children: React.ReactNode;
-}) {
+  /** "site" : contenu courant ; "wide" : header, grandes galeries. */
+  size?: "site" | "wide";
+  as?: ElementType;
+}
+
+export function Container({ children, className, size = "site", as: Tag = "div" }: ContainerProps) {
   return (
-    <div className={cn("mx-auto w-full max-w-container px-6 md:px-10 lg:px-16", className)}>
+    <Tag
+      className={cn(
+        "mx-auto w-full px-5 sm:px-8 lg:px-12",
+        size === "site" ? "max-w-site" : "max-w-wide",
+        className,
+      )}
+    >
       {children}
-    </div>
+    </Tag>
   );
 }

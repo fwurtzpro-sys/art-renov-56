@@ -1,151 +1,66 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { navLinks } from "@/data/zones";
-import { company } from "@/data/company";
 import { Container } from "@/components/ui/Container";
-import { cn } from "@/lib/utils";
-import { useScrolled } from "@/hooks/useScrolled";
+import { Icon } from "@/components/ui/Icon";
+import { Logo } from "@/components/layout/Logo";
+import { DesktopNav } from "@/components/layout/DesktopNav";
+import { MobileMenu } from "@/components/layout/MobileMenu";
+import { mainNav, quoteCta } from "@/config/navigation";
+import { getEmail, getPhone } from "@/config/site";
 
+/**
+ * Header global noir.
+ * Desktop (≥ 1280 px) : logo · navigation · CTA devis · téléphone.
+ * Mobile / tablette : logo · CTA devis simplifié · bouton menu.
+ */
 export function Header() {
-  const [open, setOpen] = useState(false);
-  const scrolled = useScrolled();
-  const pathname = usePathname();
-  const solid = scrolled || open;
+  const phone = getPhone();
+  const email = getEmail();
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-premium",
-        solid ? "bg-creme/95 shadow-sm backdrop-blur-md" : "bg-transparent"
-      )}
-    >
-      <Container>
-        <div className="flex h-20 items-center justify-between md:h-24">
+    <header className="tone-dark sticky top-0 z-50 border-b border-line bg-noir text-ivoire">
+      <Container size="wide" className="flex h-header items-center justify-between gap-4 xl:h-header-xl xl:gap-6">
+        <Logo />
+
+        <DesktopNav items={mainNav} />
+
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-4 xl:gap-5 wide:gap-6">
+          {/* CTA desktop : encadré doré sur deux lignes */}
           <Link
-            href="/"
-            className={cn(
-              "font-display text-xl tracking-tight transition-colors duration-500 md:text-2xl",
-              solid ? "text-anthracite" : "text-creme"
-            )}
-            onClick={() => setOpen(false)}
+            href={quoteCta.href}
+            className="group hidden shrink-0 flex-col items-center whitespace-nowrap border border-or px-5 py-3 wide:py-2.5 text-center transition-colors duration-300 hover:bg-or xl:flex"
           >
-            Art Renov <span className="text-breton-500">56</span>
+            <span className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-or transition-colors group-hover:text-noir">
+              {quoteCta.label}
+            </span>
+            <span className="mt-1 hidden text-[0.5625rem] font-medium uppercase tracking-[0.12em] text-ivoire/70 transition-colors group-hover:text-noir wide:block">
+              {quoteCta.sublabel}
+            </span>
           </Link>
 
-          <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigation principale">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "group relative py-1 text-sm font-medium tracking-wide transition-colors duration-500",
-                    solid
-                      ? cn(
-                          "text-anthracite/80 hover:text-anthracite",
-                          isActive && "text-anthracite"
-                        )
-                      : cn(
-                          "text-creme/80 hover:text-creme",
-                          isActive && "text-creme"
-                        )
-                  )}
-                >
-                  {link.label}
-                  <span
-                    className={cn(
-                      "absolute -bottom-1 left-0 h-px bg-breton-500 transition-all duration-300 ease-premium",
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
-                    )}
-                    aria-hidden="true"
-                  />
-                </Link>
-              );
-            })}
-          </nav>
-
-          <div className="hidden lg:block">
-            <Link
-              href="/devis"
-              className={cn(
-                "inline-flex items-center rounded-full border px-6 py-3 text-sm font-medium transition-colors duration-300",
-                solid
-                  ? "border-transparent bg-ardoise-900 text-creme hover:bg-ardoise-800"
-                  : "border-creme/40 bg-transparent text-creme hover:border-creme hover:bg-creme/10"
-              )}
-            >
-              Demander un devis
-            </Link>
-          </div>
-
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className={cn(
-              "flex size-11 items-center justify-center rounded-full transition-colors duration-500 lg:hidden",
-              solid ? "text-anthracite" : "text-creme"
-            )}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          {/* CTA mobile / tablette simplifié */}
+          <Link
+            href={quoteCta.href}
+            className="inline-flex min-h-[44px] shrink-0 items-center border border-or px-3 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-or transition-colors hover:bg-or hover:text-noir sm:px-5 xl:hidden"
           >
-            {open ? <X className="size-6" /> : <Menu className="size-6" />}
-          </button>
+            Devis<span className="hidden sm:inline">&nbsp;gratuit</span>
+          </Link>
+
+          {phone ? (
+            <a
+              href={phone.href}
+              className="hidden items-center gap-2.5 text-ivoire transition-colors hover:text-or xl:inline-flex"
+              aria-label={`Appeler ART RÉNOV 56 au ${phone.display}`}
+            >
+              <Icon name="phone" className="h-[1.125rem] w-[1.125rem] text-or" />
+              <span className="hidden whitespace-nowrap text-[0.875rem] font-medium tracking-[0.04em] wide:inline">
+                {phone.display}
+              </span>
+            </a>
+          ) : null}
+
+          <MobileMenu items={mainNav} cta={{ label: quoteCta.long, href: quoteCta.href }} phone={phone} email={email} />
         </div>
       </Container>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden bg-creme lg:hidden"
-          >
-            <Container>
-              <nav
-                className="flex flex-col gap-1 pb-8 pt-2"
-                aria-label="Navigation mobile"
-              >
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "border-b border-ardoise-100 py-4 text-lg font-medium text-anthracite transition-colors duration-200 active:text-breton-600",
-                      pathname === link.href && "text-breton-600"
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-                <Link
-                  href="/devis"
-                  onClick={() => setOpen(false)}
-                  className="mt-6 inline-flex items-center justify-center rounded-full bg-ardoise-900 px-6 py-4 text-sm font-medium text-creme"
-                >
-                  Demander un devis
-                </Link>
-                <a
-                  href={`tel:${company.phone}`}
-                  className="mt-4 text-center text-sm text-ardoise-700"
-                >
-                  {company.phone}
-                </a>
-              </nav>
-            </Container>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 }

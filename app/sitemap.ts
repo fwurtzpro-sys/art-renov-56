@@ -1,40 +1,29 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/data/company";
-import { services } from "@/data/services";
-import { realisations } from "@/data/realisations";
+import { routes } from "@/config/routes";
+import { absoluteUrl } from "@/config/site";
+import { getPublishedProjects } from "@/data/projects";
+import type { SiteRoute } from "@/types";
 
+/**
+ * sitemap.xml — uniquement les pages réellement développées (`ready`)
+ * et les réalisations réelles (jamais les projets d'illustration).
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = [
-    "",
-    "/a-propos",
-    "/prestations",
-    "/realisations",
-    "/zone-intervention",
-    "/faq",
-    "/contact",
-    "/devis",
-    "/mentions-legales",
-    "/politique-de-confidentialite",
-  ].map((path) => ({
-    url: `${siteConfig.url}${path}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: path === "" ? 1 : 0.7,
-  }));
+  const pages = (Object.values(routes) as SiteRoute[])
+    .filter((route) => route.ready)
+    .map((route) => ({
+      url: absoluteUrl(route.path),
+      changeFrequency: route.sitemap?.changeFrequency,
+      priority: route.sitemap?.priority,
+    }));
 
-  const serviceRoutes = services.map((service) => ({
-    url: `${siteConfig.url}/prestations/${service.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
+  const projectPages = routes.projects.ready
+    ? getPublishedProjects().map((project) => ({
+        url: absoluteUrl(`${routes.projects.path}/${project.slug}`),
+        changeFrequency: "yearly" as const,
+        priority: 0.6,
+      }))
+    : [];
 
-  const realisationRoutes = realisations.map((realisation) => ({
-    url: `${siteConfig.url}/realisations/${realisation.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
-
-  return [...staticRoutes, ...serviceRoutes, ...realisationRoutes];
+  return [...pages, ...projectPages];
 }
