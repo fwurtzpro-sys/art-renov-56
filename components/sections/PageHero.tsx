@@ -18,11 +18,11 @@ interface PageHeroProps {
 /** Héros compact des pages intérieures : fond marine, photo voilée optionnelle, fil d'Ariane. */
 export function PageHero({ route, eyebrow, title, intro, media, children }: PageHeroProps) {
   return (
-    <section aria-labelledby="page-titre" className="tone-dark relative isolate overflow-hidden bg-marine text-ivoire">
+    <section aria-labelledby="page-titre" className="tone-dark relative isolate overflow-hidden bg-marine-hero text-ivoire">
       {media ? (
         <>
           <Photo media={media} sizes="100vw" priority className="absolute inset-0 -z-20" frameClassName="h-full w-full" />
-          <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-marine via-marine/80 to-marine/40" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-marine-hero via-marine-hero/80 to-marine-hero/40" />
         </>
       ) : (
         <div
