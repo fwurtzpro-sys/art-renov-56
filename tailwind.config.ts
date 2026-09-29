@@ -49,6 +49,7 @@ const config: Config = {
       },
       fontSize: {
         "display-xl": ["clamp(2.75rem, 1.55rem + 4.4vw, 5.75rem)", { lineHeight: "1.02", letterSpacing: "-0.015em" }],
+        "display-hero": ["clamp(2.25rem, 1.27rem + 3.6vw, 4.715rem)", { lineHeight: "1.02", letterSpacing: "-0.015em" }],
         "display-lg": ["clamp(2.35rem, 1.6rem + 2.9vw, 4.25rem)", { lineHeight: "1.05", letterSpacing: "-0.01em" }],
         "display-md": ["clamp(1.95rem, 1.5rem + 1.7vw, 3rem)", { lineHeight: "1.1", letterSpacing: "-0.005em" }],
         "display-sm": ["clamp(1.5rem, 1.3rem + 0.8vw, 1.95rem)", { lineHeight: "1.2" }],

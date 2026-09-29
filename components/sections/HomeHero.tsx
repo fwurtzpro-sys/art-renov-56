@@ -18,7 +18,7 @@ export function HomeHero() {
 
       <Container className="animate-fade-up pb-20 pt-28 sm:pb-24 lg:pb-32">
         <p className="eyebrow">ART RÉNOV 56 • Morbihan</p>
-        <h1 id="accueil-titre" className="mt-6 max-w-4xl font-serif text-display-xl font-medium text-ivoire">
+        <h1 id="accueil-titre" className="mt-6 max-w-4xl font-serif text-display-xl font-medium text-ivoire lg:max-w-[46rem] lg:text-display-hero">
           Rénovation intérieure <Accent>&amp; aménagement</Accent> dans le Morbihan
         </h1>
         <p className="mt-7 max-w-xl text-lead text-ivoire/80">
