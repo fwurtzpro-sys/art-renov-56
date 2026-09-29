@@ -38,7 +38,7 @@ export default function FaqPage() {
             <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
               FAQ
             </HeroItem>
-            <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-xl font-medium lg:text-display-page">
+            <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-xl font-medium lg:text-display-lg">
               Vos questions, <Accent>nos réponses.</Accent>
             </HeroItem>
             <HeroItem as="p" delay={heroDelay.text} className="mt-7 max-w-2xl text-lead text-muted">

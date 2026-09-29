@@ -115,7 +115,7 @@ export default function RenovationPage() {
       />
 
       <SplitLayout media="renovationDetail" tone="dark" labelledBy="exigence-titre">
-        <Stagger>
+        <Stagger className="flex flex-col">
           <StaggerItem as="p" className="eyebrow">
             Notre exigence
           </StaggerItem>

@@ -28,7 +28,7 @@ export function SplitHero({ route, eyebrow, title, text, media, projectParam }: 
         <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
           {eyebrow}
         </HeroItem>
-        <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-lg font-medium lg:text-display-page">
+        <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-lg font-medium">
           {title}
         </HeroItem>
         <HeroItem as="p" delay={heroDelay.text} className="mt-7 max-w-md text-lead text-ivoire/80">

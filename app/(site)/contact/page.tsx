@@ -54,7 +54,7 @@ export default function ContactPage() {
             <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
               Contact
             </HeroItem>
-            <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-xl font-medium lg:text-display-page">
+            <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-xl font-medium lg:text-display-lg">
               Parlons de
               <br />
               <Accent>votre projet.</Accent>

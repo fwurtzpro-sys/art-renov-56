@@ -62,12 +62,15 @@ function NavDropdown({ item, active, pathname }: { item: NavItem; active: boolea
   // Le menu est ouvert pour une page donnée : il se referme de lui-même au changement de route.
   const [openFor, setOpenFor] = useState<string | null>(null);
   const open = openFor === pathname;
+  // Le panneau reste « visibility: hidden » tant que le fondu de fermeture n'est pas terminé (focus clavier possible dès l'ouverture).
+  const [shut, setShut] = useState(true);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLUListElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const show = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
+    setShut(false);
     setOpenFor(pathname);
   };
   const hide = () => setOpenFor(null);
@@ -126,17 +129,20 @@ function NavDropdown({ item, active, pathname }: { item: NavItem; active: boolea
         <Icon name="chevronDown" className={cn("h-3.5 w-3.5 transition-transform duration-300", open && "rotate-180")} />
       </button>
 
-      {/* Toujours monté (navigation clavier) ; `visibility` bascule à la fin du fondu de fermeture. */}
+      {/* Toujours monté (navigation clavier) ; masqué à la fin du fondu de fermeture. */}
       <m.ul
         ref={panelRef}
         id={panelId}
         initial={false}
         animate={open ? "open" : "closed"}
         variants={{
-          open: { opacity: 1, y: 0, visibility: "visible", transition: panelTransition },
-          closed: { opacity: 0, y: -8, transition: panelTransition, transitionEnd: { visibility: "hidden" } },
+          open: { opacity: 1, y: 0, transition: panelTransition },
+          closed: { opacity: 0, y: -8, transition: panelTransition },
         }}
-        style={{ visibility: "hidden" }}
+        onAnimationComplete={(definition) => {
+          if (definition === "closed") setShut(true);
+        }}
+        style={{ visibility: shut ? "hidden" : "visible" }}
         className="tone-dark absolute left-1/2 top-full z-50 -ml-36 w-72 border border-line border-t-or bg-marine py-3"
       >
         {item.children?.map((child) => {

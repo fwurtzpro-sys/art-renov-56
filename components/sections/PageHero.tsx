@@ -42,7 +42,7 @@ export function PageHero({ route, eyebrow, title, intro, media, children }: Page
           <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
             {eyebrow}
           </HeroItem>
-          <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-lg font-medium lg:text-display-page">
+          <HeroItem as="h1" id="page-titre" delay={heroDelay.title[0]} className="mt-6 font-serif text-display-lg font-medium">
             {title}
           </HeroItem>
           {intro ? (
