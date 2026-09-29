@@ -95,7 +95,7 @@ export default function HomePage() {
       </Section>
 
       {/* Prestations */}
-      <Section tone="light-alt" labelledBy="prestations-titre">
+      <Section tone="dark" labelledBy="prestations-titre">
         <SectionHeading
           id="prestations-titre"
           align="center"

@@ -16,7 +16,7 @@ export function ServiceCards() {
         const wide = index >= 3;
         return (
           <li key={service.slug} className={cn(wide ? "lg:col-span-3" : "lg:col-span-2", index === 4 && "md:col-span-2 lg:col-span-3")}>
-            <article className="group relative flex h-full flex-col border border-line bg-[var(--surface)] transition-colors duration-500 focus-within:border-or hover:border-or/60">
+            <article className="group relative flex h-full flex-col border border-line bg-anthracite transition-colors duration-500 focus-within:border-or hover:border-or/60">
               <Photo
                 media={service.image}
                 sizes={wide ? "(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"}
@@ -25,7 +25,7 @@ export function ServiceCards() {
               />
               <div className="flex flex-1 flex-col p-7 lg:p-8">
                 <Icon name={service.icon} className="h-7 w-7 text-or" />
-                <h3 className="mt-5 font-serif text-display-sm font-medium text-fg">
+                <h3 className="mt-5 font-serif text-display-sm font-medium text-ivoire">
                   <Link
                     href={routes[service.routeKey].path}
                     className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
@@ -36,7 +36,7 @@ export function ServiceCards() {
                 <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-muted">{service.excerpt}</p>
                 <span
                   aria-hidden
-                  className="mt-6 inline-flex items-center gap-3 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-accent"
+                  className="mt-6 inline-flex items-center gap-3 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-or"
                 >
                   Découvrir
                   <Icon name="arrowRight" className="h-4 w-4 transition-transform duration-300 ease-premium group-hover:translate-x-1" />

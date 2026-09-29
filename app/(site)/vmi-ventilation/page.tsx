@@ -141,7 +141,7 @@ export default function VmiPage() {
       </Section>
 
       <ProjectShowcase
-        tone="light-alt"
+        tone="dark"
         category={service.projectCategory}
         title={
           <>

@@ -29,7 +29,7 @@ export function FeatureGrid({ items, columns = 4, variant = "icon", className }:
   return (
     <ul className={cn("grid gap-px border-y border-line bg-line", columnClasses[columns], className)}>
       {items.map((item, index) => (
-        <li key={item.title} className="flex flex-col bg-[var(--cell-bg)] px-6 py-10 sm:px-8 lg:py-12">
+        <li key={item.title} className="flex flex-col bg-[var(--tone-bg)] px-6 py-10 sm:px-8 lg:py-12">
           {variant === "icon" && item.icon ? (
             <span className="flex h-14 w-14 items-center justify-center border border-or/50">
               <Icon name={item.icon} className="h-7 w-7 text-or" />

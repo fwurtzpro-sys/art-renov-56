@@ -5,12 +5,10 @@ import { Container } from "@/components/ui/Container";
 export type SectionTone = "dark" | "anthracite" | "light" | "light-alt";
 
 const toneClasses: Record<SectionTone, string> = {
-  // --tone-bg : fond de la section · --cell-bg : cellules des grilles · --surface : cartes.
-  // Sur fond clair, cellules et cartes sont d'un ivoire / blanc chaud légèrement différencié.
-  dark: "tone-dark bg-noir text-ivoire [--tone-bg:#0B0B0A] [--cell-bg:#0B0B0A] [--surface:#1C1B19]",
-  anthracite: "tone-dark bg-anthracite text-ivoire [--tone-bg:#1C1B19] [--cell-bg:#1C1B19] [--surface:#262522]",
-  light: "tone-light bg-ivoire text-encre [--tone-bg:#F5F0E6] [--cell-bg:#FBF8F2] [--surface:#FBF8F2]",
-  "light-alt": "tone-light bg-ivoire-50 text-encre [--tone-bg:#FBF8F2] [--cell-bg:#FFFDF9] [--surface:#FFFDF9]",
+  dark: "tone-dark bg-noir text-ivoire [--tone-bg:#0B0B0A]",
+  anthracite: "tone-dark bg-anthracite text-ivoire [--tone-bg:#1C1B19]",
+  light: "tone-light bg-ivoire text-encre [--tone-bg:#F5F0E6]",
+  "light-alt": "tone-light bg-ivoire-50 text-encre [--tone-bg:#FBF8F2]",
 };
 
 const spacingClasses = {

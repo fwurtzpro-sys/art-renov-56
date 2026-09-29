@@ -109,7 +109,7 @@ export default function KitchenPage() {
       </Section>
 
       <ProjectShowcase
-        tone="light-alt"
+        tone="dark"
         category={service.projectCategory}
         title={
           <>
