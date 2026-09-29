@@ -113,7 +113,7 @@ export default function RenovationPage() {
         ctaLabel="Voir plus de réalisations"
       />
 
-      <SplitLayout media="renovationDetail" tone="dark" labelledBy="exigence-titre">
+      <SplitLayout media="renovationDetail" tone="light-alt" labelledBy="exigence-titre">
         <p className="eyebrow">Notre exigence</p>
         <h2 id="exigence-titre" className="mt-6 font-serif text-display-md font-medium">
           L’exigence du détail,

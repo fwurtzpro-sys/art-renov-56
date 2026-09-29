@@ -137,7 +137,7 @@ export default function BathroomPage() {
         </div>
       </ProjectShowcase>
 
-      <Section tone="dark" labelledBy="methode-titre">
+      <Section tone="light-alt" labelledBy="methode-titre">
         <SectionHeading id="methode-titre" eyebrow="Notre méthode" title="Votre salle de bain, étape par étape" />
         <ProcessSteps steps={method} className="mt-14 lg:mt-20" />
       </Section>

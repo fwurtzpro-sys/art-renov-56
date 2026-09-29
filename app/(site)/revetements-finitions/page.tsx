@@ -108,7 +108,7 @@ export default function FinishesPage() {
       </Section>
 
       <ProjectShowcase
-        tone="dark"
+        tone="light-alt"
         category={service.projectCategory}
         title={
           <>
