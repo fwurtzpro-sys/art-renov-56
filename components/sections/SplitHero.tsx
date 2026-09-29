@@ -20,7 +20,7 @@ interface SplitHeroProps {
 export function SplitHero({ route, eyebrow, title, text, media, projectParam }: SplitHeroProps) {
   const ctaHref = projectParam ? `${quoteCta.href}?projet=${projectParam}` : quoteCta.href;
   return (
-    <SplitLayout media={media} tone="hero" priority labelledBy="page-titre" minHeightClass="lg:min-h-[calc(100svh-6rem)] lg:max-h-[860px]">
+    <SplitLayout media={media} tone="dark" priority labelledBy="page-titre" minHeightClass="lg:min-h-[calc(100svh-6rem)] lg:max-h-[860px]">
       <Breadcrumb route={route} />
       <div className="animate-fade-up mt-12 lg:mt-16">
         <p className="eyebrow">{eyebrow}</p>

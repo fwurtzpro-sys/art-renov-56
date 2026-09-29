@@ -10,11 +10,11 @@ export function HomeHero() {
   return (
     <section
       aria-labelledby="accueil-titre"
-      className="tone-dark relative isolate flex min-h-[calc(100svh-5rem)] items-end overflow-hidden bg-marine-hero text-ivoire xl:min-h-[calc(100svh-6rem)]"
+      className="tone-dark relative isolate flex min-h-[calc(100svh-5rem)] items-end overflow-hidden bg-marine text-ivoire xl:min-h-[calc(100svh-6rem)]"
     >
       <Photo media="homeHero" sizes="100vw" priority className="absolute inset-0 -z-20" frameClassName="h-full w-full" />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-marine-hero/90 via-marine-hero/60 to-marine-hero/20" />
-      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-marine-hero via-marine-hero/50 to-transparent" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-marine/90 via-marine/60 to-marine/20" />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-marine via-marine/50 to-transparent" />
 
       <Container className="animate-fade-up pb-20 pt-28 sm:pb-24 lg:pb-32">
         <p className="eyebrow">ART RÉNOV 56 • Morbihan</p>

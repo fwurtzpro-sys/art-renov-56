@@ -2,12 +2,11 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
 
-export type SectionTone = "dark" | "hero" | "panel" | "light" | "light-alt";
+export type SectionTone = "dark" | "panel" | "light" | "light-alt";
 
 // --tone-bg est lue depuis les tokens Tailwind (config/theme.ts) : aucune couleur en dur ici.
 const toneClasses: Record<SectionTone, string> = {
   dark: "tone-dark bg-marine text-ivoire [--tone-bg:theme(colors.marine.DEFAULT)]",
-  hero: "tone-dark bg-marine-hero text-ivoire [--tone-bg:theme(colors.marine.hero)]",
   panel: "tone-dark bg-marine-panel text-ivoire [--tone-bg:theme(colors.marine.panel)]",
   light: "tone-light bg-ivoire text-encre [--tone-bg:theme(colors.ivoire.DEFAULT)]",
   "light-alt": "tone-light bg-ivoire-50 text-encre [--tone-bg:theme(colors.ivoire.50)]",

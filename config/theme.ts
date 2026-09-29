@@ -12,8 +12,7 @@
  */
 export const palette = {
   /* Surfaces sombres */
-  marine: "#0D2236", // fond sombre principal (header, footer, sections, CTA)
-  marineHero: "#112B43", // héros : un cran plus clair que le header, pour créer de la profondeur
+  marine: "#0D2236", // fond sombre principal (header, footer, héros, sections, CTA)
   marinePanel: "#14304B", // cartes, panneaux, emplacements photo
   marineRaised: "#1B3B5C", // survols et éléments surélevés
 

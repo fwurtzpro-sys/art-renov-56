@@ -23,7 +23,6 @@ const config: Config = {
       colors: {
         marine: {
           DEFAULT: palette.marine,
-          hero: palette.marineHero,
           panel: palette.marinePanel,
           raised: palette.marineRaised,
         },
