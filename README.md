@@ -9,9 +9,11 @@ Next.js (App Router) · React · TypeScript · Tailwind CSS. Aucune dépendance 
 npm install
 npm run dev     # développement
 npm run lint
-npm run build   # build de production
+npm run build   # build de production (next build --webpack, voir ci-dessous)
 npm run start   # serveur de production (Node.js)
 ```
+
+Le build de production utilise le bundler Webpack (`next build --webpack`, option officielle de Next.js 16) : le build Turbopack par défaut échouait sur l'hébergeur (`TurbopackInternalError` dans le worker PostCSS). Le rendu est identique.
 
 Copier `.env.example` en `.env.local` et renseigner les valeurs.
 
