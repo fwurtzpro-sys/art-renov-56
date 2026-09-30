@@ -1,5 +1,4 @@
 import type { CSSProperties, ReactNode } from "react";
-import { cn } from "@/lib/utils";
 
 type Tag = "div" | "p" | "h1";
 
@@ -14,12 +13,13 @@ interface HeroItemProps {
 
 /**
  * Élément de la séquence d'entrée d'un héros : animation CSS (`.hero-in`, globals.css).
+ * Les classes sont concaténées sans tailwind-merge : il prendrait `text-lead` (taille) et `text-ivoire/80` (couleur) pour deux couleurs et supprimerait la taille.
  * Elle démarre dès le premier affichage, sans attendre JavaScript, et se termine
  * d'elle-même : le contenu ne peut pas rester masqué.
  */
 export function HeroItem({ children, delay, as: Component = "div", className, id }: HeroItemProps) {
   return (
-    <Component id={id} className={cn("hero-in", className)} style={{ "--hero-delay": `${delay}s` } as CSSProperties}>
+    <Component id={id} className={className ? `hero-in ${className}` : "hero-in"} style={{ "--hero-delay": `${delay}s` } as CSSProperties}>
       {children}
     </Component>
   );
