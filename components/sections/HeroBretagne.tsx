@@ -82,13 +82,13 @@ export function HeroBretagne({ pace = "fast" }: { pace?: keyof typeof paces }) {
               <path
                 d={coast}
                 pathLength={1}
-                className="geo-draw stroke-ivoire/45"
+                className="geo-draw stroke-ivoire/55"
                 strokeWidth={1.3}
                 style={timing(t.coast)}
               />
               <path
                 d={ouessant}
-                className="geo-fade stroke-ivoire/45"
+                className="geo-fade stroke-ivoire/55"
                 strokeWidth={1.3}
                 style={timing(t.ouessant)}
               />
@@ -142,7 +142,7 @@ export function HeroBretagne({ pace = "fast" }: { pace?: keyof typeof paces }) {
           <p className="whitespace-nowrap font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-or">
             Ancré en Bretagne
           </p>
-          <p className="mt-1.5 whitespace-nowrap font-serif text-[1.0625rem] italic text-ivoire/65">
+          <p className="mt-1.5 whitespace-nowrap font-serif text-[1.0625rem] italic text-ivoire/85">
             Morbihan • Elven
           </p>
         </div>
