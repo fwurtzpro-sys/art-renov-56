@@ -134,9 +134,40 @@
   animation: header-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
+/* Tracé de la Bretagne (héros de l'accueil) : dessiné puis conservé tel quel */
+@keyframes geo-draw {
+  from {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes geo-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.geo-draw {
+  animation: geo-draw var(--geo-duration, 3s) cubic-bezier(0.45, 0, 0.15, 1) var(--geo-delay, 0s) backwards;
+}
+
+.geo-fade {
+  animation: geo-fade var(--geo-duration, 2s) ease-out var(--geo-delay, 0s) backwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-in,
-  .header-in {
+  .header-in,
+  .geo-draw,
+  .geo-fade {
     animation: none;
   }
 }

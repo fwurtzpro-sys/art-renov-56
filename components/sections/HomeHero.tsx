@@ -1,6 +1,7 @@
 import { Parallax } from "@/components/motion/Parallax";
 import { HeroItem, HeroWords } from "@/components/motion/Hero";
 import { heroDelay } from "@/lib/motion";
+import { HeroBretagne } from "@/components/sections/HeroBretagne";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
@@ -21,6 +22,8 @@ export function HomeHero() {
       </Parallax>
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-marine/90 via-marine/60 to-marine/20" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-marine via-marine/50 to-transparent" />
+
+      <HeroBretagne />
 
       <Container className="pb-20 pt-28 sm:pb-24 lg:pb-32">
         <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
