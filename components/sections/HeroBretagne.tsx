@@ -2,7 +2,31 @@ import type { CSSProperties } from "react";
 import { Parallax } from "@/components/motion/Parallax";
 import { bretagne } from "@/data/bretagne";
 
-const timing = (delay: number, duration: number) =>
+/** Rythmes du tracé (délai, durée en secondes). « fast » se termine avec le héros (≈ 3,3 s), « slow » en ≈ 5,4 s. */
+const paces = {
+  fast: {
+    contours: [0.5, 2],
+    coast: [0.3, 2.4],
+    ouessant: [1.2, 1],
+    morbihan: [1.8, 1.1],
+    belleIle: [2.3, 0.6],
+    leader: [2.5, 0.6],
+    dot: [2.4, 0.7],
+    label: 2.5,
+  },
+  slow: {
+    contours: [1.2, 3.2],
+    coast: [0.5, 4.6],
+    ouessant: [2.4, 1.6],
+    morbihan: [3.9, 1.5],
+    belleIle: [4.6, 1.2],
+    leader: [5.1, 0.9],
+    dot: [5, 1.2],
+    label: 5.4,
+  },
+} as const;
+
+const timing = ([delay, duration]: readonly [number, number] | readonly number[]) =>
   ({
     "--geo-delay": `${delay}s`,
     "--geo-duration": `${duration}s`,
@@ -14,7 +38,8 @@ const timing = (delay: number, duration: number) =>
  * Purement décoratif : masqué aux lecteurs d'écran, sans interaction, absent sous 1280 px.
  * Le tracé se dessine au chargement par animation CSS finie (jamais de contenu masqué).
  */
-export function HeroBretagne() {
+export function HeroBretagne({ pace = "fast" }: { pace?: keyof typeof paces }) {
+  const t = paces[pace];
   const { viewBox, coast, morbihan, belleIle, ouessant, contours, elven } =
     bretagne;
   const leaderEnd = { x: elven.x + 44, y: elven.y + 46 };
@@ -41,7 +66,7 @@ export function HeroBretagne() {
               fill="none"
             >
               {/* Courbes de niveau marines */}
-              <g className="geo-fade" style={timing(1.2, 3.2)}>
+              <g className="geo-fade" style={timing(t.contours)}>
                 {contours.map((path, index) => (
                   <path
                     key={index}
@@ -59,13 +84,13 @@ export function HeroBretagne() {
                 pathLength={1}
                 className="geo-draw stroke-ivoire/45"
                 strokeWidth={1.3}
-                style={timing(0.5, 4.6)}
+                style={timing(t.coast)}
               />
               <path
                 d={ouessant}
                 className="geo-fade stroke-ivoire/45"
                 strokeWidth={1.3}
-                style={timing(2.4, 1.6)}
+                style={timing(t.ouessant)}
               />
 
               {/* Accents dorés : littoral du Morbihan, Belle-Île */}
@@ -74,13 +99,13 @@ export function HeroBretagne() {
                 pathLength={1}
                 className="geo-draw stroke-or"
                 strokeWidth={1.7}
-                style={timing(3.9, 1.5)}
+                style={timing(t.morbihan)}
               />
               <path
                 d={belleIle}
                 className="geo-fade stroke-or"
                 strokeWidth={1.4}
-                style={timing(4.6, 1.2)}
+                style={timing(t.belleIle)}
               />
 
               {/* Elven : repère et filet vers la signature */}
@@ -89,9 +114,9 @@ export function HeroBretagne() {
                 pathLength={1}
                 className="geo-draw stroke-or/70"
                 strokeWidth={1}
-                style={timing(5.1, 0.9)}
+                style={timing(t.leader)}
               />
-              <g className="geo-fade" style={timing(5, 1.2)}>
+              <g className="geo-fade" style={timing(t.dot)}>
                 <circle
                   cx={elven.x}
                   cy={elven.y}
@@ -111,7 +136,7 @@ export function HeroBretagne() {
           style={{
             left: `${((leaderEnd.x + 34) / viewBox.width) * 100}%`,
             top: `${((leaderEnd.y - 9) / viewBox.height) * 100}%`,
-            ...({ "--hero-delay": "5.4s" } as CSSProperties),
+            ...({ "--hero-delay": `${t.label}s` } as CSSProperties),
           }}
         >
           <p className="whitespace-nowrap font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-or">
