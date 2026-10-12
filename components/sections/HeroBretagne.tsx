@@ -49,7 +49,7 @@ export function HeroBretagne({ pace = "fast" }: { pace?: keyof typeof paces }) {
       aria-hidden
       className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[56%] select-none xl:block"
     >
-      <div className="absolute right-[-6%] top-1/2 w-[min(52vw,860px)] -translate-y-[47%]">
+      <div className="absolute right-[-6%] top-1/2 w-[min(46.8vw,774px)] -translate-y-[47%]">
         {/* Le tracé se dissout vers l'est (limite de région non dessinée) */}
         <div
           style={{

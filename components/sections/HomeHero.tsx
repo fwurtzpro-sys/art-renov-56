@@ -14,7 +14,7 @@ export function HomeHero() {
   return (
     <section
       aria-labelledby="accueil-titre"
-      className="tone-dark relative isolate flex min-h-[calc(100svh-5rem)] items-end overflow-hidden bg-marine text-ivoire xl:min-h-[calc(100svh-6rem)]"
+      className="tone-dark relative isolate flex min-h-[calc((100svh-5rem)*0.82)] items-end overflow-hidden bg-marine text-ivoire xl:min-h-[calc((100svh-6rem)*0.82)]"
     >
       {/* Parallax très léger de la photographie (nul en haut de page) */}
       <Parallax ariaHidden range={[0, 40]} offset={["start start", "end start"]} className="absolute inset-x-0 -top-[6%] -z-20 h-[112%]">
@@ -25,22 +25,22 @@ export function HomeHero() {
 
       <HeroBretagne />
 
-      <Container className="pb-20 pt-28 sm:pb-24 lg:pb-32">
+      <Container className="pb-20 pt-28 sm:pb-24 lg:pb-24 lg:pt-24">
         <HeroItem as="p" delay={heroDelay.eyebrow} className="eyebrow">
           ART RÉNOV 56 • Morbihan
         </HeroItem>
-        <h1 id="accueil-titre" className="mt-6 max-w-4xl font-serif text-display-xl font-medium text-ivoire lg:max-w-[46rem] lg:text-display-hero">
+        <h1 id="accueil-titre" className="mt-6 max-w-4xl font-serif text-display-xl font-medium text-ivoire lg:max-w-[39.25rem] lg:text-display-hero">
           <HeroWords text="Rénovation intérieure" delay={heroDelay.title[0]} />{" "}
           <Accent>
             <HeroWords text="& aménagement" delay={heroDelay.title[1]} />
           </Accent>{" "}
           <HeroWords text="dans le Morbihan" delay={heroDelay.title[2]} />
         </h1>
-        <HeroItem as="p" delay={heroDelay.text} className="mt-7 max-w-xl text-lead text-ivoire/80">
+        <HeroItem as="p" delay={heroDelay.text} className="mt-7 max-w-xl text-lead text-ivoire/80 lg:mt-6">
           Depuis Elven, nous rénovons et aménageons vos intérieurs avec soin, de l’étude de votre projet jusqu’aux
           dernières finitions.
         </HeroItem>
-        <HeroItem delay={heroDelay.actions} className="mt-10 flex flex-col gap-4 sm:flex-row">
+        <HeroItem delay={heroDelay.actions} className="mt-10 flex flex-col gap-4 sm:flex-row lg:mt-8">
           <ButtonLink href={quoteCta.href} variant="gold" size="lg">
             {quoteCta.long}
           </ButtonLink>
