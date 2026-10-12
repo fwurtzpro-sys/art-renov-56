@@ -33,11 +33,12 @@ const media = {
   bathroomAfter: { src: "", alt: "Salle de bain après rénovation", width: 1600, height: 1000 },
 
   /* À propos */
+  /* Photographie réelle, affichée en entier à son format d'origine (aucun recadrage). */
   aboutTeam: {
-    src: "",
-    alt: "Le professionnel d’ART RÉNOV 56 avec son fils devant le véhicule de l’entreprise",
-    width: 1200,
-    height: 1500,
+    src: "/images/a-propos-artisan.jpg",
+    alt: "Artisan d’ART RÉNOV 56 accompagné d’un enfant, près de son véhicule professionnel, devant un paysage côtier breton.",
+    width: 800,
+    height: 582,
   },
   aboutGoal: { src: "", alt: "Intérieur rénové et aménagé par ART RÉNOV 56", width: 1200, height: 1500 },
 

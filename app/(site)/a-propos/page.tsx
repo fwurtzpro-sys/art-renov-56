@@ -3,7 +3,7 @@ import { HeroItem } from "@/components/motion/Hero";
 import { heroDelay } from "@/lib/motion";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section } from "@/components/ui/Section";
-import { Photo } from "@/components/ui/Photo";
+import { AboutPhoto } from "@/components/sections/AboutPhoto";
 import { Accent, SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -70,11 +70,9 @@ export default function AboutPage() {
                 ))}
               </ul>
             </div>
-            <div className="relative lg:col-span-5 lg:col-start-8">
-              <span aria-hidden className="absolute -bottom-4 -right-4 hidden h-full w-full border border-or/50 sm:block" />
-              {/* Emplacement réservé à la photo réelle : le professionnel, son fils et le véhicule.
-                  Ne pas remplacer par une image générée ni des personnes de substitution. */}
-              <Photo media="aboutTeam" priority sizes="(min-width: 1024px) 40vw, 100vw" frameClassName="aspect-[4/5]" />
+            {/* Photographie réelle (artisan, enfant, véhicule, paysage) : affichée en entier, sans recadrage. */}
+            <div className="lg:col-span-6">
+              <AboutPhoto />
             </div>
           </div>
         </Container>
