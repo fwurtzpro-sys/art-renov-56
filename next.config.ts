@@ -15,6 +15,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Build « autonome » uniquement à la demande (déploiement GitHub Actions → Hostinger/Passenger,
+  // voir deploy/hostinger/). Sans cette variable, la configuration est inchangée.
+  ...(process.env.BUILD_STANDALONE === "1" ? { output: "standalone" as const } : {}),
   reactStrictMode: true,
   poweredByHeader: false,
   images: {

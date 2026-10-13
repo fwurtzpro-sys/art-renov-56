@@ -1,0 +1,104 @@
+name: Build et déploiement Hostinger
+
+# À chaque push sur « production » : construit le site sur GitHub (le build ne passe pas sur le
+# serveur : « spawn node EAGAIN ») et conserve l'archive. Si le déploiement est activé
+# (variable HOSTINGER_DEPLOY = true), l'envoie sur Hostinger, l'installe comme NOUVELLE version,
+# la teste, et ne bascule que si la variable HOSTINGER_AUTO_SWITCH vaut « true ».
+# N'utilise pas le bouton « Redéployer » de hPanel. Voir deploy/hostinger/LISEZ-MOI.md.
+
+on:
+  push:
+    branches: [production]
+  workflow_dispatch:
+    inputs:
+      basculer:
+        description: 'Basculer la version active après un test réussi (true/false)'
+        required: false
+        default: 'false'
+
+concurrency:
+  group: hostinger-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - name: Archive de déploiement
+        env:
+          # Prudent par défaut : le site reste NON indexable tant que la variable n'est pas "false".
+          SITE_NOINDEX: ${{ vars.SITE_NOINDEX || 'true' }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://art-renov56.com' }}
+        run: bash deploy/hostinger/build-artifact.sh dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artefact-hostinger
+          path: |
+            dist/artefact-art-renov56-*.tgz
+            dist/NOM_ARCHIVE.txt
+          retention-days: 30
+
+  deploy:
+    needs: build
+    if: ${{ vars.HOSTINGER_DEPLOY == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: artefact-hostinger
+          path: dist
+      - name: Secrets requis
+        env:
+          H: ${{ secrets.HOSTINGER_SSH_HOST }}
+          P: ${{ secrets.HOSTINGER_SSH_PORT }}
+          U: ${{ secrets.HOSTINGER_SSH_USER }}
+          K: ${{ secrets.HOSTINGER_SSH_KEY }}
+        run: |
+          for n in H P U K; do [ -n "${!n}" ] || { echo "::error::Secret manquant (voir deploy/hostinger/LISEZ-MOI.md)"; exit 1; }; done
+      - name: Connexion SSH
+        env:
+          HOSTINGER_SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          HOSTINGER_SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          HOSTINGER_SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$HOSTINGER_SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$HOSTINGER_SSH_PORT" "$HOSTINGER_SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+      - name: Envoi, installation et test (sans bascule)
+        env:
+          HOSTINGER_SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          HOSTINGER_SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          HOSTINGER_SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+        run: |
+          NAME="$(cat dist/NOM_ARCHIVE.txt)"
+          SSH="ssh -i $HOME/.ssh/id_deploy -p $HOSTINGER_SSH_PORT -o StrictHostKeyChecking=yes -o BatchMode=yes"
+          $SSH "$HOSTINGER_SSH_USER@$HOSTINGER_SSH_HOST" 'mkdir -p ~/art-renov56-deploy/inbox'
+          scp -i "$HOME/.ssh/id_deploy" -P "$HOSTINGER_SSH_PORT" -o StrictHostKeyChecking=yes -o BatchMode=yes \
+            deploy/hostinger/*.sh deploy/hostinger/sonde.mjs "$HOSTINGER_SSH_USER@$HOSTINGER_SSH_HOST:art-renov56-deploy/"
+          scp -i "$HOME/.ssh/id_deploy" -P "$HOSTINGER_SSH_PORT" -o StrictHostKeyChecking=yes -o BatchMode=yes \
+            "dist/$NAME" "$HOSTINGER_SSH_USER@$HOSTINGER_SSH_HOST:art-renov56-deploy/inbox/"
+          $SSH "$HOSTINGER_SSH_USER@$HOSTINGER_SSH_HOST" "bash ~/art-renov56-deploy/deployer.sh ~/art-renov56-deploy/inbox/$NAME"
+      - name: Bascule (uniquement si activée)
+        if: ${{ vars.HOSTINGER_AUTO_SWITCH == 'true' || github.event.inputs.basculer == 'true' }}
+        env:
+          HOSTINGER_SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          HOSTINGER_SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          HOSTINGER_SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+        run: |
+          ssh -i "$HOME/.ssh/id_deploy" -p "$HOSTINGER_SSH_PORT" -o StrictHostKeyChecking=yes -o BatchMode=yes \
+            "$HOSTINGER_SSH_USER@$HOSTINGER_SSH_HOST" 'bash ~/art-renov56-deploy/basculer.sh nouvelle'
+      - name: Nettoyage de la clé
+        if: always()
+        run: rm -f ~/.ssh/id_deploy
